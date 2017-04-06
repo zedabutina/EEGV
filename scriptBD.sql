@@ -24,7 +24,7 @@ CREATE TABLE usuario (
 	id serial NOT NULL,
 	login VARCHAR(20) NOT NULL,
 	senha VARCHAR(50) NOT NULL,
-	nome VARCHAR(60) NOT NULL,
+	apelido VARCHAR(60) NOT NULL,
 	sexo CHAR(1) NOT NULL,
 	nivel CHAR(1) NOT NULL,
 		constraint pkUsuario primary key (id) );
@@ -49,7 +49,7 @@ CREATE TABLE curso (
 	nome VARCHAR(80) NOT NULL,
 	sigla VARCHAR(4) NOT NULL,
 	tipo CHAR(1) NOT NULL,
-	matricula INTEGER NOT NULL,
+	matricula INTEGER,
 			constraint pkCurso primary key (numero),
 			constraint fkCurso foreign key (matricula)
 				references professor(matricula) );				
@@ -87,6 +87,7 @@ CREATE TABLE planoensino (
 	data_aprovacao DATE,
 	id INTEGER NOT NULL,
 	codigo_disc INTEGER NOT NULL,
+	turno CHAR(1), /*(M, V, N) Matutino, Vespertino ou Noturno. Obrigatório se a situação for diferente de “Em andamento”. */
 	matricula_professor integer NOT NULL,
 	matricula_coordenador integer NOT NULL,
 			constraint pkPlanoensino primary key (codigo),
