@@ -14,15 +14,15 @@ include 'boots.php';
 			cidade = document.frmIncluirProf.cidade.value;
 			uf = document.frmIncluirProf.uf.value;
 			id = document.frmIncluirProf.id.value;
-*/
+
 			//validação dos campos obrigatórios
 			if (matricula == "" || nome == "" || cep == "" || logradouro == "" || numero == "" || bairro == "" || cidade == "" || uf == "" || id == ""){
             	window.alert("Verifique se os campos estão todos preenchidos.");
 
-			}else{
+			}else{*/
 				document.frmIncluirProf.submit();
 			}
-		}
+//		}
 	</script>
 	</head>
 		<br><br><br><br>
