@@ -2,8 +2,8 @@
 	$strConn = "host=localhost dbname=sipedb port=5432 user=sipe password='senac123'";
 	$con = pg_connect($strConn);
 	if(!$con){
-			echo "<p><b>ERRO DE CONEXÃO COM O BANCO DE DADOS<b></p>";
+			echo "<img src='images/desconectado' width='56' height='56'>";
 	}else{
-		echo "CONEXAO COM SUCESSO";
+		echo "<img src='images/conectado' width='56' height='56'>";
 	}
 ?>
