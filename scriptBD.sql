@@ -33,7 +33,7 @@ CREATE TABLE professor (
 	matricula INTEGER NOT NULL,
 	nome VARCHAR(60) NOT NULL,
 	cep INTEGER NOT NULL,
-	logadouro VARCHAR(100) NOT NULL,
+	logradouro VARCHAR(100) NOT NULL,
 	numero VARCHAR(15) NOT NULL,
 	complemento VARCHAR,
 	bairro VARCHAR(40) NOT NULL,
