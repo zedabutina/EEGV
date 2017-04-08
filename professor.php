@@ -1,69 +1,35 @@
-<!DOCTYPE html>
-<!--Emanuel Gomes!-->
-<html lang="pt-br">
-	<head>
+<?php
+include 'cabecalho.php';
+include 'boots.php';
+?>
+    <script type="text/javascript">
+	    function validarDados(){
 
+    	/*	matricula = document.frmIncluirProf.matricula.value;
+			nome = document.frmIncluirProf.nome.value;
+			cep = document.frmIncluirProf.cep.value;
+			logradouro = document.frmIncluirProf.logradouro.value;
+			numero = document.frmIncluirProf.numero.value;
+			bairro = document.frmIncluirProf.bairro.value;
+			cidade = document.frmIncluirProf.cidade.value;
+			uf = document.frmIncluirProf.uf.value;
+			id = document.frmIncluirProf.id.value;
+*/
+			//validação dos campos obrigatórios
+			if (matricula == "" || nome == "" || cep == "" || logradouro == "" || numero == "" || bairro == "" || cidade == "" || uf == "" || id == ""){
+            	window.alert("Verifique se os campos estão todos preenchidos.");
 
-
-	<script src="bootstrap/js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-
-
-    	<script type="text/javascript">
-	    	function validarDados(){
-
-    			login = document.frmIncluirProf.login.value;
-				senha = document.frmIncluirProf.senha.value;
-				nome = document.frmIncluirProf.nome.value;
-				email = document.frmIncluirProf.email.value;
-				cidade = document.frmIncluirProf.cidade.value;
-				categoria = document.frmIncluirProf.categoria.value;
-
-				//validação dos campos obrigatórios
-				if (login == "" || senha == "" || nome == "" || email == "" || cidade == "" || categoria == ""){
-            		window.alert("Verifique se os campos estão todos preenchidos.");
-
-				}else{
-					document.frmIncluirProf.submit();
-				}
+			}else{
+				document.frmIncluirProf.submit();
 			}
-		</script>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Sistema Acadêmico</title>
-
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="bootstrap/css/style.css" rel="stylesheet">
+		}
+	</script>
 	</head>
-	<body>
-
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-		 <div class="container-fluid">
-   		  <div class="navbar-header">
-    	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-    	 <span class="sr-only">Toggle navigation</span>
- 	    <span class="icon-bar"></span>
-  	   <span class="icon-bar"></span>
-  	   <span class="icon-bar"></span>
- 	   </button>
- 	   <a class="navbar-brand" href="pagina_inicial.php"># Sistema Acadêmico</a>
- 	  </div>
- 	  <div id="navbar" class="navbar-collapse collapse">
- 	   <ul class="nav navbar-nav navbar-right">
- 	    <li><a href="logout.php">Logout</a></li>
- 	    <li><a href="login.html">Login</a></li>
- 	   </ul>
- 	  </div>
-	  </div>
- 	</nav>
-
-	<body>
 		<br><br><br><br>
     	<center><h1><b>Cadastro de professor</b></h1></center>
     	<br>
 
-    	<form name="frmIncluirProf" action="cadProf.php" method="get">
+    	<form name="frmIncluirProf" action="cadProf.php" method="post">
 
 		<label for="matricula"><b>Matrícula*:</b> </label>
 		<input type="number" name="matricula" id="matricula" size="31" maxlength="15"/>
@@ -159,8 +125,9 @@
 		<br>
 		<br>
 
-	<b>ID*: </b><select name="uf" id="uf"></h1>
+	<b>ID*: </b><select name="id" id="id"></h1>
 				<option value=''>--Selecione--</option>
+				<option value='teste'>TESTE</option>
 			</select>
 		<br>
 		<br>
@@ -173,8 +140,7 @@
 	<a href="pagina_inicial.php"> &lt; Voltar</a>
 
 		</form>
-	<hr>
-	</body>
+	
 	<script>
 		$("#splash").hide();
 		function buscarDadosCEP(){
@@ -202,5 +168,6 @@
 		}
 
 	</script>
-</html>
-<!--Emanuel Gomes!-->
+<?php
+include 'rodape.php';
+?>
