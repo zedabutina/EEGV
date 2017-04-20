@@ -25,7 +25,7 @@ include 'boots.php';
 //		}
 	</script>
 	</head>
-		<br><br><br><br>
+		<br><br>
     	<center><h1><b>Cadastro de professor</b></h1></center>
     	<br>
 
@@ -125,9 +125,13 @@ include 'boots.php';
 		<br>
 		<br>
 
-	<b>ID*: </b><select name="id" id="id"></h1>
+	<b>Usuário*: </b><select name="id" id="id"></h1>
+<!--	?php include 'conexao.php';
+	$sql="SELECT id, login FROM usuario WHERE nivel IN ('P', 'C')";
+	$valid=pg_query($con,$sql);
+	-->
 				<option value=''>--Selecione--</option>
-				<option value='teste'>TESTE</option>
+				<option value='1'>TESTE</option>
 			</select>
 		<br>
 		<br>
