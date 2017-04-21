@@ -102,7 +102,7 @@
 			</div>	
 				<div id="main" class="row">
 					<div class="col-md-7">
-						<a href="index.php" class="btn btn-secundary pull-right h2"><b>Menu</b></a>
+						<a href="menu.php" class="btn btn-secundary pull-right h2"><b>Menu</b></a>
 						<button type="submit" class="btn btn-primary pull-right h2">Salvar</button>
 					</div>
 
