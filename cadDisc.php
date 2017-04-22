@@ -1,14 +1,14 @@
-<!-- viNi++ -->
-
 <?php 
-include "conexao.php"; //conexão com o banco de dados
+	include "conexao.php"; //conexão com o banco de dados
+	include "rodape.php";
+	include 'cabecalho.php';
+	include 'boots.php';
 ?>
 
-<?php 
+<div id="main" class="container-fluid">
+				<h3 class="page-header">Cadastro de Disciplina</h3>
 
-if(!$con){
-	header("location: #");
-}
+<?php 
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){ // Esta função permite que seja recebido apenas requisições método POST
 	if(!isset($_POST['codigodisc']) && $_POST['nome'] && $_POST['ch'] && $_POST['ementa'] &&  $_POST['objetivo'] && $_POST['bb'] && $_POST['bc'])// Esta função valida todos os dados
@@ -20,31 +20,29 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){ // Esta função permite que seja rece
 		$objetivo = $_POST['objetivo'];
 		$bibliografia_basica = $_POST['bb'];
 		$bibliografia_complementar = $_POST['bc'];
+				
+					$sql=sprintf("SELECT * FROM disciplina WHERE codigo = %s", $codigo);
+					$valid=pg_query($con,$sql);
+					if (pg_num_rows($valid)>0){
+						echo "<b><font color=red>ERRO!!! Disciplina já cadastrada no sistema.</b>";
+						header('Refresh: 3; url=alterarDisc.php');
+					}else{
+						if($codigo==''){
+							$sqlvalida = sprintf("INSERT INTO disciplina(codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar) VALUES ('%s','%s','%s','%s','%s','%s','%s') ", $codigo, $nome, $ch, $ementa, $objetivo, $bibliografia_basica, $bibliografia_complementar);
+						}else{
+							$sqlvalida = sprintf("INSERT INTO disciplina(codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar) VALUES ('%s','%s','%s','%s','%s','%s','%s') ", $codigo, $nome, $ch, $ementa, $objetivo, $bibliografia_basica, $bibliografia_complementar);
+						}
+						$result=pg_query($con,$sqlvalida);{
+						echo "Disciplina cadastrada com sucesso";
+						echo "<br>Você será redirecionado para a página de listagem de disciplinas";
+						header('Refresh: 5; url=alterarDisc.php');
 
-		try{
-			$query = "INSERT INTO disciplina (codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar) VALUES ('".$codigo."', '".$nome."', '".$ch."', '".$ementa."', '".$objetivo."', '".$bibliografia_basica."', '".$bibliografia_complementar."');";
-			$result = pg_query($con,$query);
-
-			if($result){
-				echo '<script>alert("Dados cadastrados com sucesso!")</script>';
-				header('Location: formDisc.php');
-			} else {
-				echo '<script>alert("Erro ao cadastrar!")</script>';		
-				header('Location: formDisc.php');
-
+				}
 			}
-
-		} catch(\Exception $e){
-			echo 'test :/';
 		}
-
-
-	} else {
-		echo '<script>alert("Favor, prencher todos os dados!")</script>';
-	}
-
-}else {
-	echo 'Haha malandrão!';
+		
+ } else {
+	echo 'Haha malandrão! apenas POST!';
 }
 
 ?>
