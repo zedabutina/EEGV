@@ -1,3 +1,5 @@
+<!-- viNi -->
+
 <?php 
 	include "conexao.php"; //conexão com o banco de dados
 	include "rodape.php";
