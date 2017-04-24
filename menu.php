@@ -1,4 +1,4 @@
-<?php include "cabecalho.php";?>
+<?php include "cabecalho.php";session_start();?>
 	<script type="text/javascript">
 		
 		function mostrarCurso() {
@@ -41,16 +41,17 @@
 <?php include "conexao.php"; ?>
 	<body>
 		<?php
-			if($_COOKIE['login'] == '' && $_COOKIE['nivel'] == ''){
+			if($_SESSION['login'] == '' && $_SESSION['nivel'] == ''){
 				echo "<b>Você deve estar logado</b>";
 				header('Location: login.php');
-			}elseif($_COOKIE['login'] != '' && $_COOKIE['nivel'] != ''){ 
+			}elseif($_SESSION['login'] != '' && $_SESSION['nivel'] != ''){ 
 		?>
-				<h3 class="page-header"> Bem Vindo <?php echo $_COOKIE['apelido']; ?> </h3>
+				<h3 class="page-header"> Bem Vindo <?php echo $_SESSION['apelido']; ?> </h3>
 				<hr>
 				<div id="main" class="container-fluid" align="center">
 					<?php 
-						if($_COOKIE['nivel'] == 'C' || $_COOKIE['nivel'] == 'A'){
+
+						if($_SESSION['nivel'] == 'C' || $_SESSION['nivel'] == 'A'){
 					?>
 						<label for="curso" onClick="javascript: mostrarCurso();"><h3 class="page-header" >Cursos</h3></label>
 						<div style="display:none" id="curso" name="curso">
@@ -72,7 +73,7 @@
 						}
 					?>
 					<?php 
-						if($_COOKIE['nivel'] == 'C'){
+						if($_SESSION['nivel'] == 'C'){
 					?>
 					<label for="usuario" onClick="javascript: mostrarUsuario();"><h3 class="page-header">Usuários</h3></label>
 						<div style="display:none" id="usuario" name="usuario">
@@ -81,7 +82,7 @@
 						</div></br>
 					<?php 
 						}
-					?>
+					?>	
 				
 				</div>
 			<?php

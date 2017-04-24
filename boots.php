@@ -5,10 +5,17 @@
 					<a class="navbar-brand" href="#">Sistema Acadêmico</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="pagina_inicial.php">Página Inicial</a></li>
-						<li><a href="login.html">Login</a></li>
-						<li><a href="cadUsuario.html">Cadastrar Usuário</a></li>
+					<ul class="nav navbar-nav navbar-right">	
+						
+				<?php
+					session_start();
+					if(isset($_SESSION['login'])){
+						echo "<li><a href='menu.php'>Menu</a></li>";
+						echo "<li><a href='logout.php'>Logout</a></li>";
+					}else{
+						echo "<li><a href='login.php'>Login</a></li>";
+					}
+				?>
 					</ul>
 				</div>
 			</div>

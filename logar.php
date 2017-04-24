@@ -18,13 +18,14 @@
 			<h3 class="page-header">Login</h3>
 			
 			<?php
+				
 				$login = $_POST['login'];
 				$password= $_POST['password'];
 				$sqlvalida = sprintf("SELECT * FROM usuario WHERE login = '%s' and senha = '%s'",$login,md5($password));
 				$resultado = pg_query($con,$sqlvalida);  
 				$linhas = pg_num_rows($resultado);
-				if($_COOKIE['login']){
-						echo "<p><b>Você já esta logado como ". $_COOKIE["login"] . ". Para realizar um login com usuário diferente faça </p></b>";
+				if($_SESSION['login']){
+						echo "<p><b>Você já esta logado como ". $_SESSION["login"] . ". Para realizar um login com usuário diferente faça </p></b>";
 						echo "<b><a href='logout.php'>logout</a></b>";					
 			
 				}elseif($linhas <= 0){
@@ -40,10 +41,10 @@
 					$nivel = pg_query($con,$connivel);
 					$nv=pg_fetch_row($nivel);
 			
-
-					setcookie("login",$login);
-					setcookie("apelido",$apel[0]);
-					setcookie("nivel",$nv[0]);
+					session_start();
+					$_SESSION['login']= $login;
+					$_SESSION['apelido']= $apel[0];
+					$_SESSION['nivel']= $nv[0];
 
 
 					header("Location:menu.php");
