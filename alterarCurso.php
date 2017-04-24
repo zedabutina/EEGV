@@ -1,5 +1,6 @@
 <?php
-	include "cabecalho.php";
+	include "cabecalho.php"; 
+	session_start();
 ?>
 	</head>
 	<?php include "boots.php"; ?>
@@ -48,11 +49,11 @@
 								$visualizar=sprintf("SELECT nome FROM professor WHERE matricula = '%s'",$dados['matricula']);
 								$sqlvisualizar=pg_fetch_array(pg_query($con,$visualizar));
 								echo "<td>" . $sqlvisualizar['nome'] . "</td>";
-								echo "<form method='POST' action='editarCurso.php'><input type='hidden' name='edit' value='". $dados['numero'] . "'>";							
-								echo "<td><button class='btn btn-warning btn-xs' type='submit'>Editar</button>";
+								echo "<form method='POST' action='editarCurso.php'><input type='hidden' name='edit' value='". $dados['numero'] . "'>";						
+								echo "<td class='actions'><button class='btn btn-link btn-xs' type='submit'><img src='images/editar.png' width='24' height='24'></button>";
 								echo "</form>";
 								echo "<form method='POST' action='excluirCurso.php'><input type='hidden' name='num' value='". $dados['numero'] . "'><input type='hidden' name='id' value='9rj9!@#@!329vjy@#$#%#ngv2'>";								
-								echo "<button class='btn btn-danger btn-xs' type='submit'>Excluir</button>";			
+								echo "<button class='btn btn-link btn-xs' type='submit'><img src='images/excluirCurso.png' width='24' height='24'></button>";			
 								echo "</form></td>";
 								echo "</tr>";
 							}
@@ -67,7 +68,7 @@
 						
 					</div>
 					<div align="left" class="col-md-1">
-						<?php echo "<a href='alterarCurso.php' class='btn btn-secundary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></a>"; ?>		</div>
+						<?php echo "<a href='menu.php' class='btn btn-secundary pull-right h2' ><b>MENU</b></a>"; ?>		</div>
 				</div>
 				</div>
 	     		</div>

@@ -1,4 +1,5 @@
-<?php include "cabecalho.php";session_start(); ?>
+<?php include "cabecalho.php";
+		session_start(); ?>
 	</head>
 <?php include "boots.php"; ?>
 

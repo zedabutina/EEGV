@@ -110,6 +110,9 @@
 
 			</div>	
 				<div id="main" class="row">
+					<div class="col-md-1">
+						<button class="btn btn-link" onClick='window.history.go(-1)'><b>Voltar</b></button>
+					</div>
 					<div class="col-md-7">
 						<a href="menu.php" class="btn btn-secundary pull-right h2"><b>Menu</b></a>
 						<button type="submit" class="btn btn-primary pull-right h2">Salvar</button>
