@@ -25,11 +25,12 @@
 				$resultado = pg_query($con,$sqlvalida);  
 				$linhas = pg_num_rows($resultado);
 				if($_SESSION['login']){
-						echo "<p><b>Você já esta logado como ". $_SESSION["login"] . ". Para realizar um login com usuário diferente faça </p></b>";
+						echo "<p><b>Você já esta logado como ". $_SESSION["login"] . ". Para realizar um login com usuário diferente faça </p></b>";					pg_close($con);
 						echo "<b><a href='logout.php'>logout</a></b>";					
 			
 				}elseif($linhas <= 0){
-					echo "<p><b>Usuário e/ou senha incorreta!</b></p>";
+					echo "'<script>alert('Usuário e/ou senha incorreta');window.location.href='login.php'</script>';";
+					pg_close($con);
 				}elseif($linhas > 0){
 					
 					$conapelido = sprintf("SELECT apelido FROM usuario WHERE login = '%s' ", $login);
@@ -41,14 +42,14 @@
 					$nivel = pg_query($con,$connivel);
 					$nv=pg_fetch_row($nivel);
 			
-					session_start();
+						session_start();
 					$_SESSION['login']= $login;
 					$_SESSION['apelido']= $apel[0];
 					$_SESSION['nivel']= $nv[0];
 
-
+					pg_close($con);
 					header("Location:menu.php");
-				
+					
 				}
 	
 			?>
