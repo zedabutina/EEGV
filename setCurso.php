@@ -65,6 +65,22 @@
 						echo "</form>";
 						
 					
+					}else{
+						if($coordenador==' ' || $coordenador==0){
+						$sqlconsulta = sprintf("INSERT INTO curso(numero,nome,sigla,tipo) VALUES ('%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo);
+						}elseif($coordenador>0){
+						$sqlconsulta = sprintf("INSERT INTO curso VALUES ('%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador);
+					}
+						
+						$consulta = pg_query($con,$sqlconsulta);
+						$exc = sprintf("DELETE FROM curso WHERE numero='%s'",$ant);
+						$result = pg_query($con,$exc);
+						pg_close($con);
+						echo "<b>Dados alterados com sucesso!!!</b>";
+						echo "<div align='center'>";
+						echo "<a href='alterarCurso.php' class='btn btn-primary'>Listar Cursos</a>";
+						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
+						echo "</div>";
 					}
 				}
 			?>
