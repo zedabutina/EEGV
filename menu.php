@@ -61,13 +61,13 @@
 				
 						<label for="disciplina" onClick="javascript: mostrarDisciplina();"><h3 class="page-header">Disciplinas</h3></label>
 							<div style="display:none" id="disciplina" name="disciplina">
-								<a href="incluirCurso.php"><img src='images/add.png' width='128' height='128'></a>
-								<a href="alterarCurso.php"><img src='images/editar.png' width='128' height='128'></a>
+								<a href="formDisc.php"><img src='images/add.png' width='128' height='128'></a>
+								<a href="formDisc.php"><img src='images/editar.png' width='128' height='128'></a>
 							</div></br>
 						<label for="professor" onClick="javascript: mostrarProfessor();"><h3 class="page-header">Professores</h3></label>
 							<div style="display:none" id="professor" name="professor">
-								<a href="incluirCurso.php"><img src='images/add.png' width='128' height='128'></a>
-								<a href="alterarCurso.php"><img src='images/editar.png' width='128' height='128'></a>
+								<a href="formProf.php"><img src='images/add.png' width='128' height='128'></a>
+								<a href="alterarProf.php"><img src='images/editar.png' width='128' height='128'></a>
 							</div></br>
 					<?php 
 						}
@@ -77,8 +77,8 @@
 					?>
 					<label for="usuario" onClick="javascript: mostrarUsuario();"><h3 class="page-header">Usuários</h3></label>
 						<div style="display:none" id="usuario" name="usuario">
-							<a href="incluirCurso.php"><img src='images/add.png' width='128' height='128'></a>
-							<a href="alterarCurso.php"><img src='images/editar.png' width='128' height='128'></a>
+							<a href="formUsers.php"><img src='images/add.png' width='128' height='128'></a>
+							<a href="alterarUsers.php"><img src='images/editar.png' width='128' height='128'></a>
 						</div></br>
 					<?php 
 						}
