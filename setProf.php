@@ -72,7 +72,17 @@
 						echo "</form>";
 
 					}else{
-						if(
+						$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
+						$consulta = pg_query($con,$sqlconsulta);
+						$result = pg_num_rows($consulta);
+
+					if ($result>0){
+						echo "<b>Esse professor já está vinculado à um curso, portanto, não pode ser excluído!</b>";
+						echo "<div align='center' class='row'>";
+						echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
+						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
+						echo "</div>";
+					}elseif($result==0){
 						if ($complemento == ' '){
 							$insert = sprintf("INSERT INTO professor(matricula,nome,cep,logradouro,numero,bairro,cidade,uf,id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id);
 						}elseif($complemento != ' '){
@@ -93,6 +103,7 @@
 				}
 			?>
 		</div>
+		<?php
 				}
 			?>
 		</div>

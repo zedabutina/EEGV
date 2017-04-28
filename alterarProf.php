@@ -51,13 +51,19 @@
 								echo "<td>" . $sqlvisualizar['apelido'] . "</td>";
 
 								echo "<form method='POST' action='editarProf.php'>
-								<input type='hidden' name='edit' value='". $dados['matricula'] . "'>";							
+								<input type='hidden' name='edit' value='". $dados['matricula'] . "'>";
 								echo "<td><button class='btn btn-warning btn-xs' type='submit'>Editar</button>";
 								echo "</form>";
-								echo "<form method='POST' action='excluirProf.php'>
-								<input type='hidden' name='num' value='". $dados['matricula'] . "'>
-								<input type='hidden' name='idp' value='9rj9!@#@!329vjy@#$#%#ngv2'>";								
-								echo "<button class='btn btn-danger btn-xs' type='submit'>Excluir</button>";			
+
+								$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
+								$consulta = pg_query($con,$sqlconsulta);
+								$result = pg_num_rows($consulta);
+								if ($result==0){
+									echo "<form method='POST' action='excluirProf.php'>
+									<input type='hidden' name='num' value='". $dados['matricula'] . "'>
+									<input type='hidden' name='idp' value='9rj9!@#@!329vjy@#$#%#ngv2'>";
+									echo "<button class='btn btn-danger btn-xs' type='submit'>Excluir</button>";
+								}
 								echo "</form></td>";
 								echo "</tr>";
 							}
