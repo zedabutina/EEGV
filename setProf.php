@@ -2,6 +2,7 @@
 	<script>
 		function valid(){
 			document.getElementById("idp").value = 'SDFfdasf3$@!4t34534fSD';
+
 		}
 	</script>
 	</head>
@@ -27,9 +28,11 @@
 				if($matricula==$ant){
 					if($complemento==' '){
 						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$matricula);
+
 					}elseif($complemento!=' '){
 						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$matricula);
 					}
+
 						$update = pg_query($con,$sqlup); 
 						echo "<b>Dados alterados com sucesso!!!</b>";
 						header('Refresh: 3; url=alterarProf.php');
@@ -39,10 +42,10 @@
 					$sqlconsulta = sprintf("SELECT * FROM professor WHERE matricula='%s'",$matricula);
 					$consulta = pg_query($con,$sqlconsulta);
 					$result = pg_num_rows($consulta);
+
 					if ($result>0){
 						$dados=pg_fetch_array($consulta);
 						echo "<b>O professor ". $dados['nome'] . " já esta cadastrado com essa matrícula. Deseja excluí-lo, trocar as mátriculas ou Cancelar?</b>";
-					
 						echo "<form method='POST' action='excluirProf.php'>
 						<input type='hidden' name='num' value='". $dados['matricula'] . "'>
 						<input type='hidden' name='ant' value='". $ant . "'>
@@ -68,7 +71,28 @@
 						echo "</div>";
 						echo "</form>";
 
+					}else{
+						if(
+						if ($complemento == ' '){
+							$insert = sprintf("INSERT INTO professor(matricula,nome,cep,logradouro,numero,bairro,cidade,uf,id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id);
+						}elseif($complemento != ' '){
+							$insert = sprintf("INSERT INTO professor VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id);
+						}
+						
+						$consulta = pg_query($con,$sqlconsulta);
+						$exc = sprintf("DELETE FROM professor WHERE matricula='%s'",$ant);
+						$result = pg_query($con,$exc);
+						pg_close($con);
+						echo "<b>Dados alterados com sucesso!!!</b>";
+						echo "<div align='center'>";
+						echo "<a href='alterarCurso.php' class='btn btn-primary'>Listar Cursos</a>";
+						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
+						echo "</div>";
+			//			header('Refresh: 3; url=alterarProf.php');
 					}
+				}
+			?>
+		</div>
 				}
 			?>
 		</div>

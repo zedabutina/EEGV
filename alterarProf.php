@@ -28,6 +28,7 @@
 						<th>Cidade</th>
 						<th>UF</th>
 						<th>Usuário</th>
+						<th>Ações</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,7 +46,9 @@
 								echo "<td>" . $dados['bairro'] . "</td>";
 								echo "<td>" . $dados['cidade'] . "</td>";
 								echo "<td>" . $dados['uf'] . "</td>";
-								echo "<td>" . $dados['id'] . "</td>";
+								$visualizar=sprintf("SELECT apelido FROM usuario WHERE id = '%s'",$dados['id']);
+								$sqlvisualizar=pg_fetch_array(pg_query($con,$visualizar));
+								echo "<td>" . $sqlvisualizar['apelido'] . "</td>";
 
 								echo "<form method='POST' action='editarProf.php'>
 								<input type='hidden' name='edit' value='". $dados['matricula'] . "'>";							

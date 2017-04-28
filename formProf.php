@@ -1,6 +1,7 @@
 <?php
 include 'cabecalho.php';
 include 'boots.php';
+include 'conexao.php';
 ?>
     <script type="text/javascript">
 	    function validarDados(){
@@ -126,17 +127,17 @@ include 'boots.php';
 		<br>
 
 	<b>Usuário*: </b><select name="id" id="id"></h1>
-<!--	?php include 'conexao.php';
-	$sql="SELECT id, login FROM usuario WHERE nivel IN ('P', 'C')";
-	$valid=pg_query($con,$sql);
-	-->
 				<option value=''>--Selecione--</option>
-				<option value='1'>TESTE</option>
-			</select>
+						<?php
+							$sqlusuario= sprintf("SELECT id, apelido FROM usuario WHERE nivel IN ('P', 'C') ORDER BY apelido"); 
+							$sqlresultado = pg_query($con,$sqlusuario);
+								while($dados = pg_fetch_array($sqlresultado)){
+									echo "<option value='" . $dados['id'] ."'>" . $dados['apelido'] . "</option>";
+								}
+						?>
+			</h1></select>
 		<br>
 		<br>
-
-    	<h5> <strong>Todos os campos com * são de preenchimento obrigatório.</strong></h5>
 
 	<center><button type="button" class="btn btn-info"
 				onclick="javascript:validarDados()"> Gravar!
