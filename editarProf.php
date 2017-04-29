@@ -34,14 +34,15 @@ include 'conexao.php';
 							$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
 							$consulta = pg_query($con,$sqlconsulta);
 							$result = pg_num_rows($consulta);
-							if ($result==0){
+							if($result==0){
 									echo 'laço um matricula ';
 									echo $dados['matricula'];
 			      				echo "<td><input type='number' name='matricula' id='matricula' value='". $dados['matricula'] ."' /></td>";
 							}elseif($result>0){
-									echo 'laço dois matricula';
+									echo 'laço dois matricula ';
 									echo $dados['matricula'];
 			      				echo "<td><input type='number' name='matricula' id='matricula' value='". $dados['matricula'] ."' disabled/></td>";
+								echo "<input type='hidden' name='matricula' id='matricula' value='". $dados['matricula'] ."' />";
 							}
 							echo "<input type='hidden' name='ant' id='ant' value='". $dados['matricula'] ."' />";
 							echo "<td><input type='text' name='nome' id='nome' size='31' value='". $dados['nome'] ."' /></td>";

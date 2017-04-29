@@ -72,22 +72,28 @@
 						echo "</form>";
 
 					}else{
-						$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
-						$consulta = pg_query($con,$sqlconsulta);
-						$result = pg_num_rows($consulta);
+						$sqlconsulta2 = sprintf("SELECT * FROM professor WHERE matricula='%s'",$matricula);
+						$consulta2 = pg_query($con,$sqlconsulta2);
+						$dados=pg_fetch_array($consulta2);
 
-					if ($result>0){
-						echo "<b>Esse professor já está vinculado à um curso, portanto, não pode ser excluído!</b>";
-						echo "<div align='center' class='row'>";
-						echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
-						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
-						echo "</div>";
-					}elseif($result==0){
-						if ($complemento == ' '){
-							$insert = sprintf("INSERT INTO professor(matricula,nome,cep,logradouro,numero,bairro,cidade,uf,id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id);
-						}elseif($complemento != ' '){
-							$insert = sprintf("INSERT INTO professor VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id);
-						}
+			/*			$sqlconsulta3 = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
+						$consulta3 = pg_query($con,$sqlconsulta3);
+						$result3 = pg_num_rows($consulta3);
+						echo $result3;*/
+
+
+						if ($result3>0){
+							echo "<b>Esse professor já está vinculado à um curso, portanto, não pode ser excluído!</b>";
+							echo "<div align='center' class='row'>";
+							echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
+							echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
+							echo "</div>";
+						}elseif($result3==0){
+							if ($complemento == ' '){
+								$insert = sprintf("INSERT INTO professor(matricula,nome,cep,logradouro,numero,bairro,cidade,uf,id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id);
+							}elseif($complemento != ' '){
+								$insert = sprintf("INSERT INTO professor VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id);
+							}
 						
 						$consulta = pg_query($con,$sqlconsulta);
 						$exc = sprintf("DELETE FROM professor WHERE matricula='%s'",$ant);
