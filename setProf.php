@@ -27,10 +27,10 @@
 				$id = $_POST['id'];
 				if($matricula==$ant){
 					if($complemento==' '){
-						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$matricula);
+						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$ant);
 
 					}elseif($complemento!=' '){
-						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$matricula);
+						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$ant);
 					}
 
 						$update = pg_query($con,$sqlup); 
@@ -47,7 +47,7 @@
 						$dados=pg_fetch_array($consulta);
 						echo "<b>O professor ". $dados['nome'] . " já esta cadastrado com essa matrícula. Deseja excluí-lo, trocar as mátriculas ou Cancelar?</b>";
 						echo "<form method='POST' action='excluirProf.php'>
-						<input type='hidden' name='num' value='". $dados['matricula'] . "'>
+						<input type='hidden' name='num' value='". $matricula . "'>
 						<input type='hidden' name='ant' value='". $ant . "'>
 						<input type='hidden' name='matricula' value='". $matricula ."'>
 						<input type='hidden' name='nome' value='". $nome ."'>
@@ -72,27 +72,22 @@
 						echo "</form>";
 
 					}else{
-						$sqlconsulta2 = sprintf("SELECT * FROM professor WHERE matricula='%s'",$matricula);
-						$consulta2 = pg_query($con,$sqlconsulta2);
-						$dados=pg_fetch_array($consulta2);
+						$dados=pg_fetch_array($consulta);
+						$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$matricula);
+						$consulta = pg_query($con,$sqlconsulta);
+						$result = pg_num_rows($consulta);
 
-			/*			$sqlconsulta3 = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
-						$consulta3 = pg_query($con,$sqlconsulta3);
-						$result3 = pg_num_rows($consulta3);
-						echo $result3;*/
-
-
-						if ($result3>0){
+						if ($result>0){
 							echo "<b>Esse professor já está vinculado à um curso, portanto, não pode ser excluído!</b>";
 							echo "<div align='center' class='row'>";
 							echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
 							echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
 							echo "</div>";
-						}elseif($result3==0){
+						}elseif($result==0){
 							if ($complemento == ' '){
-								$insert = sprintf("INSERT INTO professor(matricula,nome,cep,logradouro,numero,bairro,cidade,uf,id) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id);
+								$insert = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$ant);
 							}elseif($complemento != ' '){
-								$insert = sprintf("INSERT INTO professor VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",$ant,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id);
+								$insert = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$ant);
 							}
 						
 						$consulta = pg_query($con,$sqlconsulta);
@@ -104,7 +99,7 @@
 						echo "<a href='alterarCurso.php' class='btn btn-primary'>Listar Cursos</a>";
 						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
 						echo "</div>";
-			//			header('Refresh: 3; url=alterarProf.php');
+						header('Refresh: 3; url=alterarProf.php');
 					}
 				}
 			?>
