@@ -57,7 +57,7 @@ CREATE TABLE curso (
 CREATE TABLE curso_disciplina (
 	numero INTEGER NOT NULL,
 	codigo INTEGER NOT NULL,
-	modulo CHAR(1) NOT NULL,
+	modulo CHAR(4) NOT NULL,
 			constraint pk_curso_disciplina primary key(numero,codigo),
 			constraint fkcurso_disciplina_curso foreign key (numero)
 				references curso (numero),
