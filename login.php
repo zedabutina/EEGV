@@ -10,7 +10,15 @@
 <?php include "boots.php"; ?>
 
 	<br/><br/>
-<?php include "conexao.php"; ?>
+
+<?php include "conexao.php";
+
+	if(isset($_SESSION['login'])){
+		echo "<p><b>Você já esta logado como ". $_SESSION["login"] . ". Para realizar um login com usuário diferente faça </p></b>";
+		pg_close($con);
+		echo "<b><a href='logout.php'>logout</a></b>";
+	}
+?>
 	<body>
 
 	<br/>
