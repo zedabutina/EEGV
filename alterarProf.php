@@ -74,7 +74,7 @@
 			
 				</table>
 					<div align="right" class="col-md-11">
-						<?php echo "<tr><a href='formProf.php'><img src='images/adicionar' width='48' height='48'></a></tr>"; ?>
+						<?php echo "<tr><a href='formProf.php'><img src='images/adicionar.png' width='48' height='48'></a></tr>"; ?>
 						
 					</div>
 					<div align="left" class="col-md-1">

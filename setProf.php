@@ -45,7 +45,7 @@
 
 					if ($result>0){
 						$dados=pg_fetch_array($consulta);
-						echo "<b>O professor ". $dados['nome'] . " já esta cadastrado com essa matrícula. Verifique a disponibilidade de outra matrícula.</b>";
+						echo "<b>O professor ". $dados['nome'] . " já está cadastrado com essa matrícula. Verifique a disponibilidade de outra matrícula.</b>";
 			/*			echo "<form method='POST' action='excluirProf.php'>
 						<input type='hidden' name='num' value='". $matricula . "'>
 						<input type='hidden' name='ant' value='". $ant . "'>
@@ -81,8 +81,8 @@
 						if ($result>0){
 							echo "<b>Esse professor já está vinculado à um curso, portanto, não pode ser excluído!</b>";
 							echo "<div align='center' class='row'>";
-							echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
-							echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
+						echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Professores</a>";
+						echo "<a href='menu.php' class='btn btn-default'>Menu</a>";
 							echo "</div>";
 						}elseif($result==0){
 							if ($complemento == ' '){
@@ -96,10 +96,10 @@
 
 						echo "<b>Dados alterados com sucesso!!!</b>";
 						echo "<div align='center'>";
-						echo "<a href='alterarCurso.php' class='btn btn-primary'>Listar Cursos</a>";
-						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
+						echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Professores</a>";
+						echo "<a href='menu.php' class='btn btn-default'>Menu</a>";
 						echo "</div>";
-						header('Refresh: 3; url=alterarProf.php');
+		//				header('Refresh: 3; url=alterarProf.php');
 					}
 				}
 			?>
