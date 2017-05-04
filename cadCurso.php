@@ -2,6 +2,7 @@
 	include "cabecalho.php";
 	session_start();
 ?>
+	
 	</head>
 	<?php include "boots.php"; ?>
 
@@ -9,6 +10,7 @@
 	<?php include "conexao.php"; ?>
 	<body>
 <?php 
+		if($_SERVER['REQUEST_METHOD']=="POST"){
 		if(!isset($_SESSION['login']) || !isset($_SESSION['nivel'])){ 
 			echo "</br><b>Você deve estar logado e ter permissão para isso!!!</b><br><hr>";
 			echo "<div class='container' >";
@@ -27,21 +29,24 @@
 							$coordenador= $_POST['coordenador'];
 							$sql=sprintf("SELECT * FROM curso WHERE numero = %s",$numero);
 							$valid=pg_query($con,$sql);
-							if (pg_num_rows($valid)>0){
-								echo "<div align='left' class='col-md-7'>";
-								echo "<b>ERRO!Número de curso já cadastrado</b>";
-								echo "<button class='btn btn-primary' onClick='window.history.go(-1)'>Voltar</button>";
-								echo "</div>";
-							}elseif($valid!=''){
-								if($coordenador==''){
-									$sqlvalida = sprintf("INSERT INTO curso(numero,nome,sigla,tipo) VALUES ('%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo);
-								}else{
-									$sqlvalida = sprintf("INSERT INTO curso VALUES ('%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador);	
+echo $coodenador;
+								if (pg_num_rows($valid)>0){
+									echo "<div align='left' class='col-md-7'>";
+									echo "<b>ERRO!Número de curso já cadastrado</b>";
+									echo "<button class='btn btn-primary' onClick='window.history.go(-1)'>Voltar</button>";
+									echo "'<script>alert('Número de Curso já cadastrado!'); window.history.go(-1);</script>';";
+									echo "</div>";
+								}elseif(pg_num_rows($valid)==0){
+									if($coordenador==''|| $coordenador=="Selecione..."){
+										$sqlvalida = sprintf("INSERT INTO curso(numero,nome,sigla,tipo) VALUES ('%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo);
+									}else{
+										$sqlvalida = sprintf("INSERT INTO curso VALUES ('%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador);	
+									}
+									$result=pg_query($con,$sqlvalida);
+									echo "<b>Curso cadastrado com sucesso</b>";
 								}
-								$result=pg_query($con,$sqlvalida);
-								echo "<b>Curso cadastrado com sucesso</b>";
-							}
-	
+						
+							
 				?>
 			<div id="main" class="row">
 				<div class="col-md-7">
@@ -56,7 +61,8 @@
 				echo "<div class='col-md-7'>";
 				echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
 				echo "</div>";
-			} 
+			}
+			}	 
 			?>
 	     		
 <?php	 
