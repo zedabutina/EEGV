@@ -23,7 +23,7 @@
 					echo "<script>alert('Você deve estar logado!'); window.location.href='login.php'</script>";
 				}if(pg_num_rows($result)>0){
 					?>
-						<form method="POST" action="#" onSubmit="javascript: return valida();" id="form" name="form" class="form-horizontal">
+						<form method="POST" action="validaSenha.php" onSubmit="javascript: return valida();" id="form" name="form" class="form-horizontal">
 							<div class="form-group">
 								<label for="atual" class="col-xs-5 control-label">Senha Atual:</label>
 								<div class="col-xs-3">
