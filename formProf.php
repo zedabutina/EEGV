@@ -1,6 +1,9 @@
 <?php
 include 'cabecalho.php';
 include 'boots.php';
+?>
+<br><br>
+<?php
 include 'conexao.php';
 ?>
     <script type="text/javascript">
@@ -25,8 +28,8 @@ include 'conexao.php';
 			}
 //		}
 	</script>
+	<link href="css/alinhar.css" rel="stylesheet">
 	</head>
-		<br><br>
     	<center><h1><b>Cadastro de professor</b></h1></center>
     	<br>
 
@@ -52,7 +55,7 @@ include 'conexao.php';
 		<br>
 
 		<label for="logradouro"><b>Logradouro*:</b> </label>
-		<input type="text" name="logradouro" id="logradouro" size="70 " maxlength="100"/>
+		<input type="text" name="logradouro" id="logradouro" size="50 " maxlength="100"/>
 
 		<br>
 		<br>
@@ -81,7 +84,7 @@ include 'conexao.php';
 		<br>
 		<br>
 
-	<b>UF*: </b><select name="uf" id="uf"></h1>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>UF*: </b><select name="uf" id="uf"><h1>
 				<option value=''>--Selecione--</option>
 				<optgroup label="Norte">
 					<option value='AC'>Acre</option>
@@ -126,53 +129,26 @@ include 'conexao.php';
 		<br>
 		<br>
 
-	<b>Usuário*: </b><select name="id" id="id"></h1>
-				<option value=''>--Selecione--</option>
-						<?php
-							$sqlusuario= sprintf("SELECT id, apelido FROM usuario WHERE nivel IN ('P', 'C') ORDER BY apelido"); 
-							$sqlresultado = pg_query($con,$sqlusuario);
-								while($dados = pg_fetch_array($sqlresultado)){
-									echo "<option value='" . $dados['id'] ."'>" . $dados['apelido'] . "</option>";
-								}
-						?>
-			</h1></select>
-		<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Usuário*: </b><select name="id" id="id">
+		<option value=''>--Selecione--</option>
+			<?php
+				$sqlusuario= sprintf("SELECT id, apelido FROM usuario WHERE nivel IN ('P', 'C') ORDER BY apelido"); 
+				$sqlresultado = pg_query($con,$sqlusuario);
+				while($dados = pg_fetch_array($sqlresultado)){
+					echo "<option value='" . $dados['id'] ."'>" . $dados['apelido'] . "</option>";
+				}
+			?>
+	</select></h1>
+
 		<br>
 
 	<center><button type="button" class="btn btn-info"
 				onclick="javascript:validarDados()"> Gravar!
 	</center></button>
-	<a href="pagina_inicial.php"> &lt; Voltar</a>
+	<a href="menu.php"> &lt; Voltar</a>
 
 		</form>
-	
-	<script>
-		$("#splash").hide();
-		function buscarDadosCEP(){
-			var url = "//viacep.com.br/ws/"+$("#cep").val() +"/json/";
-			$("#splash").show();			
-			$.get(url, preencherDados)
-				.fail(msgErro)
-				.always(esconder);
-		}
-
-		function esconder(){
-			$("#splash").hide();
-		}
-
-		function msgErro(){
-			alert("Erro ao buscar o CEP");
-			
-		}
-
-		function preencherDados(dados){
-			$("#logradouro").val(dados.logradouro);
-			$("#bairro").val(dados.bairro);
-			$("#cidade").val(dados.localidade);
-			$("#uf").val(dados.uf);
-		}
-
-	</script>
+		<script src="js/consultaCEP.js"></script>
 <?php
 include 'rodape.php';
 ?>
