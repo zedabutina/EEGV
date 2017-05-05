@@ -53,6 +53,9 @@
 
 						if($_SESSION['nivel'] == 'C' || $_SESSION['nivel'] == 'A'){
 					?>
+						<div>
+							<a href="alterarSenha.php"><img src='images/senha.gif' width='128' height='128'></a>
+						</div>
 						<label for="curso" onClick="javascript: mostrarCurso();"><h3 class="page-header" >Cursos</h3></label>
 						<div style="display:none" id="curso" name="curso">
 							<a href="incluirCurso.php"><img src='images/add.png' width='128' height='128'></a>
