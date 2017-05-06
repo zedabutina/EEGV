@@ -20,5 +20,7 @@
 			$("#logradouro").val(dados.logradouro);
 			$("#bairro").val(dados.bairro);
 			$("#cidade").val(dados.localidade);
+			$("#cidade2").val(dados.localidade);
 			$("#uf").val(dados.uf);
+			$("#uf2").val(dados.uf);
 		}
