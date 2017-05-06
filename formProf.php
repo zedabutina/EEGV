@@ -79,52 +79,15 @@ include 'conexao.php';
 		<br>
 
 		<label for="cidade"><b>Cidade*:</b> </label>
-		<input type="text" name="cidade" id="cidade" size="25" maxlength="35"/>
+		<input type="text" name="cidade2" id="cidade2" size="25" maxlength="35" disabled/>
+		<input type="hidden" name="cidade" id="cidade" size="25" maxlength="35"/>
 
 		<br>
 		<br>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>UF*: </b><select name="uf" id="uf"><h1>
-				<option value=''>--Selecione--</option>
-				<optgroup label="Norte">
-					<option value='AC'>Acre</option>
-					<option value='AP'>Amapá</option>
-					<option value='AM'>Amazonas</option>
-					<option value='RO'>Rondônia</option>
-					<option value='RR'>Roraima</option>
-					<option value='PA'>Pará</option>
-					<option value='TO'>Tocantins</option>
-				</optgroup>
-				<optgroup label="Nordeste">
-					<option value='AL'>Alagoas</option>
-					<option value='BA'>Bahia</option>
-					<option value='CE'>Ceará</option>
-					<option value='MA'>Maranhão</option>
-					<option value='PB'>Paraíba</option>
-					<option value='PE'>Pernambuco</option>
-					<option value='PI'>Piauí</option>
-					<option value='RN'>Rio Grande do Norte</option>
-					<option value='SE'>Sergipe</option>
-				</optgroup>
-				<optgroup label="Centro-oeste">
-					<option value='DF'>Distrito Federal</option>
-					<option value='GO'>Goiás</option>
-					<option value='MT'>Mato Grosso</option>
-					<option value='MS'>Mato Grosso do Sul</option>
-				</optgroup>
-				<optgroup label="Sul">
-					<option value='RS'>Rio Grande do Sul</option>
-					<option value='PR'>Paraná</option>
-					<option value='SC'>Santa Catarina</option>
-				</optgroup>
-				<optgroup label="Sudeste">
-					<option value='ES'>Espírito Santo</option>
-					<option value='MG'>Minas Gerais</option>
-					<option value='RJ'>Rio de Janeiro</option>
-					<option value='SP'>São Paulo</option>
-				</optgroup>
-
-		</select>
+		<label for="uf"><b>UF*:</b> </label>
+		<input type="text" name="uf2" id="uf2" size="2" maxlength="2" disabled/>
+		<input type="hidden" name="uf" id="uf" />
 
 		<br>
 		<br>
