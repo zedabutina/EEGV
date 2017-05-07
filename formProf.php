@@ -79,8 +79,8 @@ include 'conexao.php';
 		<br>
 
 		<label for="cidade"><b>Cidade*:</b> </label>
-		<input type="text" name="cidade2" id="cidade2" size="25" maxlength="35" disabled/>
-		<input type="hidden" name="cidade" id="cidade" size="25" maxlength="35"/>
+		<input type="text" name="cidade2" id="cidade2" size="20" maxlength="35" disabled/>
+		<input type="hidden" name="cidade" id="cidade" maxlength="35"/>
 
 		<br>
 		<br>
@@ -101,7 +101,7 @@ include 'conexao.php';
 					echo "<option value='" . $dados['id'] ."'>" . $dados['apelido'] . "</option>";
 				}
 			?>
-	</select></h1>
+	</select>
 
 		<br>
 

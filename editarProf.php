@@ -14,13 +14,11 @@ include 'conexao.php';
 					$sql="SELECT * FROM professor WHERE matricula = ". $idp;
 					$contador = pg_query($con,$sql);
 						while($dados = pg_fetch_array($contador)){
-						//	echo "<tr>";
 							echo "<form method='POST' action='setProf.php'>";
-						//	echo "<tr>";
 							$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
 							$consulta = pg_query($con,$sqlconsulta);
 							$result = pg_num_rows($consulta);
-							echo "<b>Preencha os dados e selecione salvar para efetuar as alterações.</b>";
+							echo "<b>Preencha os campos e selecione salvar para efetuar as alterações.</b>";
 							echo "<th>Matrícula</th>";
 							echo "<th>Professor</th>";
 							echo "<th>CEP</th>";
@@ -34,6 +32,7 @@ include 'conexao.php';
 			      				echo "<td><input type='number' name='matricula' id='matricula' style='width: 5em;' value='". $dados['matricula'] ."' disabled/></td>";
 								echo "<input type='hidden' name='matricula' id='matricula' value='". $dados['matricula'] ."' />";
 							}
+
 							echo "<input type='hidden' name='ant' id='ant' value='". $dados['matricula'] ."' />";
 							echo "<td><input type='text' name='nome' id='nome' size='31' value='". $dados['nome'] ."' /></td>";
 							echo "<td><input type='text' name='cep' id='cep' size='10' maxlength='9' onBlur='buscarDadosCEP()' value='". $dados['cep'] ."' /><label id='splash'>Aguarde...</label></td>";
@@ -58,11 +57,30 @@ include 'conexao.php';
 							echo "<th></th>";
 							echo "<tr>";
 
-							echo "<td><input type='text' name='cidade2' id='cidade2' size='25' value='". $dados['cidade'] ."' disabled/></td>";
-							echo "<input type='hidden' name='cidade' id='cidade' size='25' value='". $dados['cidade'] ."' />";
+							echo "<td><input type='text' name='cidade2' id='cidade2' size='20' value='". $dados['cidade'] ."' disabled/></td>";
+							echo "<input type='hidden' name='cidade' id='cidade' value='". $dados['cidade'] ."' />";
 							echo "<td><input type='text' name='uf2' id='uf2' size='2' maxlength='2' value='". $dados['uf'] ."' disabled/></td>";
-							echo "<input type='hidden' name='uf' id='uf' size='2' maxlength='2' value='". $dados['uf'] ."' />";
-							echo "<td><input type='text' name='id' id='id' value='". $dados['id'] ."' /></td>";
+							echo "<input type='hidden' name='uf' id='uf' maxlength='2' value='". $dados['uf'] ."' />";
+							echo "<td>";
+
+							$view=sprintf("SELECT id, apelido FROM usuario WHERE id='%s'",$dados['id']);
+							$sqlview=pg_query($con,$view);
+							$viewsql=pg_fetch_array($sqlview);
+							$dadosselect = $dados['id'];
+							$dadosselect2 = $viewsql['apelido'];
+								$visualizar=sprintf("SELECT id, apelido FROM usuario WHERE nivel IN ('P', 'C') ORDER BY apelido");
+								$sqlvisualizar=pg_query($con,$visualizar);
+								echo "<select name='id' id='id'>";
+								while($dadosc = pg_fetch_array($sqlvisualizar)){
+									if($dadosc['id'] == $dadosselect){
+										echo "<option selected value='" . $dadosselect . "'>" . $dadosselect2 . "</option>";
+									}else{
+										echo "<option value='" . $dadosc['id'] . "'>" . $dadosc['apelido'] . "</option>";
+									}
+								}
+
+								echo "</select>";
+							echo "</td>";
 							echo "<th></th>";
 							echo "</tr>";
 
