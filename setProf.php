@@ -95,11 +95,11 @@
 						pg_close($con);
 
 						echo "<b>Dados alterados com sucesso!!!</b>";
-						echo "<div align='center'>";
-						echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Professores</a>";
-						echo "<a href='menu.php' class='btn btn-default'>Menu</a>";
-						echo "</div>";
-		//				header('Refresh: 3; url=alterarProf.php');
+		//				echo "<div align='center'>";
+		//				echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Professores</a>";
+		//				echo "<a href='menu.php' class='btn btn-default'>Menu</a>";
+		//				echo "</div>";
+						header('Refresh: 3; url=alterarProf.php');
 					}
 				}
 			?>

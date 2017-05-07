@@ -45,11 +45,11 @@
 					}
 					$resultado = pg_query($con,$insert);
 					echo "<b>Alteração efetuada com Sucesso</b>";
-					echo "<div align='center' class='row'>";
-					echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
-					echo "<button onClick='#' class='btn btn-secondary'>Menu</button>";
-					echo "</div>";
-	//				header('Refresh: 3; url=alterarProf.php');
+	//				echo "<div align='center' class='row'>";
+	//				echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Professores</a>";
+	//				echo "<button onClick='#' class='btn btn-secondary'>Menu</button>";
+	//				echo "</div>";
+					header('Refresh: 3; url=alterarProf.php');
 				}elseif($idp=='SDFfdasf3$@!4t34534fSD'){
 					$matricula = $_POST['matricula'];
 					$nome = $_POST['nome'];
@@ -72,11 +72,11 @@
 					}
 					$resulInset = pg_query($con,$insert);
 					echo "<b>Troca efetuada com sucesso</b>";
-					echo "<div align='center' class='row'>";
-					echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
-					echo "<button onClick='#' class='btn btn-secondary'>Menu</button>";
-					echo "</div>";
-	//				header('Refresh: 3; url=alterarProf.php');
+	//				echo "<div align='center' class='row'>";
+	//				echo "<a href='alterarProf.php' class='btn btn-primary'>Listar Cursos</a>";
+	//				echo "<button onClick='#' class='btn btn-secondary'>Menu</button>";
+	//				echo "</div>";
+					header('Refresh: 3; url=alterarProf.php');
 				}
 			?>
 		</div>

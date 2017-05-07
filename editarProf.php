@@ -14,13 +14,13 @@ include 'conexao.php';
 					$sql="SELECT * FROM professor WHERE matricula = ". $idp;
 					$contador = pg_query($con,$sql);
 						while($dados = pg_fetch_array($contador)){
-							echo "<tr>";
+						//	echo "<tr>";
 							echo "<form method='POST' action='setProf.php'>";
-							echo "<tr>";
+						//	echo "<tr>";
 							$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
 							$consulta = pg_query($con,$sqlconsulta);
 							$result = pg_num_rows($consulta);
-
+							echo "<b>Preencha os dados e selecione salvar para efetuar as alterações.</b>";
 							echo "<th>Matrícula</th>";
 							echo "<th>Professor</th>";
 							echo "<th>CEP</th>";
@@ -36,8 +36,9 @@ include 'conexao.php';
 							}
 							echo "<input type='hidden' name='ant' id='ant' value='". $dados['matricula'] ."' />";
 							echo "<td><input type='text' name='nome' id='nome' size='31' value='". $dados['nome'] ."' /></td>";
-							echo "<td><input type='text' name='cep' id='cep' size='10' value='". $dados['cep'] ."' /></td>";
+							echo "<td><input type='text' name='cep' id='cep' size='10' maxlength='9' onBlur='buscarDadosCEP()' value='". $dados['cep'] ."' /><label id='splash'>Aguarde...</label></td>";
 							echo "<td><input type='text' name='logradouro' id='logradouro' size='35' value='". $dados['logradouro'] ."' /></td>";
+
 							echo "<tr>";
 							echo "<th>Número</th>";
 							echo "<th>Complemento</th>";
@@ -57,8 +58,10 @@ include 'conexao.php';
 							echo "<th></th>";
 							echo "<tr>";
 
-							echo "<td><input type='text' name='cidade' id='cidade' size='25' value='". $dados['cidade'] ."' /></td>";
-							echo "<td><input type='text' name='uf' id='uf' size='2' value='". $dados['uf'] ."' /></td>";
+							echo "<td><input type='text' name='cidade2' id='cidade2' size='25' value='". $dados['cidade'] ."' disabled/></td>";
+							echo "<input type='hidden' name='cidade' id='cidade' size='25' value='". $dados['cidade'] ."' />";
+							echo "<td><input type='text' name='uf2' id='uf2' size='2' maxlength='2' value='". $dados['uf'] ."' disabled/></td>";
+							echo "<input type='hidden' name='uf' id='uf' size='2' maxlength='2' value='". $dados['uf'] ."' />";
 							echo "<td><input type='text' name='id' id='id' value='". $dados['id'] ."' /></td>";
 							echo "<th></th>";
 							echo "</tr>";
@@ -74,6 +77,7 @@ include 'conexao.php';
 					<button type="submit" class="btn btn-primary pull-right h2">Salvar</button>
 				</div>
 				</form>
+		<script src="js/consultaCEP.js"></script>
 				</div>
 				</div>
 	     		</div>
