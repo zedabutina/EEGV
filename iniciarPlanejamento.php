@@ -57,7 +57,7 @@
 							<div class="form-group">
 								<label for="nova" class="col-xs-5 control-label">Data de ínicio:</label>
 								<div class="col-xs-3">
-					      				<input type="date" name="dtinicio" id="dtinicio" class="form-control"  placeHolder="DD/MM/YYY"/>
+					      				<input type="date" name="dtinicio" id="dtinicio" class="form-control"  placeHolder="DD/MM/YYYY"/>
 								</div>
 							</div>
 							<div class="form-group">
