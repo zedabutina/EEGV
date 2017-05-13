@@ -68,18 +68,18 @@ include 'conexao.php';
 							$viewsql=pg_fetch_array($sqlview);
 							$dadosselect = $dados['id'];
 							$dadosselect2 = $viewsql['apelido'];
-								$visualizar=sprintf("SELECT id, apelido FROM usuario WHERE nivel IN ('P', 'C') ORDER BY apelido");
-								$sqlvisualizar=pg_query($con,$visualizar);
-								echo "<select name='id' id='id'>";
-								while($dadosc = pg_fetch_array($sqlvisualizar)){
-									if($dadosc['id'] == $dadosselect){
-										echo "<option selected value='" . $dadosselect . "'>" . $dadosselect2 . "</option>";
-									}else{
-										echo "<option value='" . $dadosc['id'] . "'>" . $dadosc['apelido'] . "</option>";
-									}
+							$visualizar=sprintf("SELECT id, apelido FROM usuario WHERE nivel IN ('P', 'C') ORDER BY apelido");
+							$sqlvisualizar=pg_query($con,$visualizar);
+							echo "<select name='id' id='id'>";
+							while($dadosc = pg_fetch_array($sqlvisualizar)){
+								if($dadosc['id'] == $dadosselect){
+									echo "<option selected value='" . $dadosselect . "'>" . $dadosselect2 . "</option>";
+								}else{
+									echo "<option value='" . $dadosc['id'] . "'>" . $dadosc['apelido'] . "</option>";
 								}
+							}
 
-								echo "</select>";
+							echo "</select>";
 							echo "</td>";
 							echo "<th></th>";
 							echo "</tr>";

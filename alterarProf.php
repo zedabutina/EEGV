@@ -52,9 +52,9 @@
 
 								echo "<form method='POST' action='editarProf.php'>
 								<input type='hidden' name='edit' value='". $dados['matricula'] . "'>";
-								echo "<td><button class='btn btn-warning btn-xs' type='submit'>Editar</button>";
+						//		echo "<td><button class='btn btn-warning btn-xs' type='submit'>Editar</button>";
+								echo "<td class='actions'><button class='btn btn-link btn-xs' type='submit'><img src='images/editar.png' width='24' height='24'></button>";
 								echo "</form>";
-
 								$sqlconsulta = sprintf("SELECT c.nome FROM curso c INNER JOIN professor p ON p.matricula = c.matricula WHERE p.matricula = '%s'",$dados['matricula']);
 								$consulta = pg_query($con,$sqlconsulta);
 								$result = pg_num_rows($consulta);
@@ -62,10 +62,12 @@
 									echo "<form method='POST' action='excluirProf.php'>
 									<input type='hidden' name='num' value='". $dados['matricula'] . "'>
 									<input type='hidden' name='idp' value='9rj9!@#@!329vjy@#$#%#ngv2'>";
-									echo "<button class='btn btn-danger btn-xs' type='submit'>Excluir</button>";
+						//			echo "<button class='btn btn-danger btn-xs' type='submit'>Excluir</button>";
+									echo "<button class='btn btn-link btn-xs' type='submit'><img src='images/excluir.png' width='24' height='24'></button>";
+									echo "</form>";
 								}
-								echo "</form></td>";
 								echo "</tr>";
+
 							}
 							pg_close($con);
 						?>
@@ -78,7 +80,8 @@
 						
 					</div>
 					<div align="left" class="col-md-1">
-						<?php echo "<a href='alterarProf.php' class='btn btn-secundary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></a>"; ?>		</div>
+						<?php echo "<a href='menu.php' class='btn btn-secundary pull-right h2'><b>Voltar</b></a>"; ?>
+					</div>
 				</div>
 				</div>
 	     		</div>
