@@ -9,5 +9,6 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<?php
-		    setlocale(LC_ALL, 'pt_BR');
+			setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+			date_default_timezone_set('America/Sao_Paulo');
 		?>
