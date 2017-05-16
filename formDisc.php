@@ -1,7 +1,7 @@
-<!-- viNi++ -->
-
 <?php
-        include 'boots.php';
+	include 'cabecalho.php';
+    include 'boots.php';
+	include 'conexao.php';
 ?>
 
 <!DOCTYPE html>
@@ -178,3 +178,4 @@
 </body>
 
 </html>
+include

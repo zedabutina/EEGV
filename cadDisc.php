@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){ // Esta função permite que seja rece
 						$result=pg_query($con,$sqlvalida);{
 						echo " <div class='alert alert-success'> Disciplina cadastrada com sucesso!";
 						echo "<br>Você será redirecionado para a página de listagem de disciplinas";
-						header('Refresh: 5; url=editarDisc.php');
+						header('Refresh: 5; url=alterarDisc.php');
 					}
 				}
 			}

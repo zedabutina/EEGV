@@ -34,7 +34,7 @@ include 'conexao.php';
                 <div class="form-group">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
-				<b>Disciplina*: &nbsp;&nbsp;&nbsp;&nbsp;</b><select name="disciplina" id="disciplina">
+				<b>Disciplina*: &nbsp;&nbsp;&nbsp;&nbsp;</b><select name="codigo" id="codigo">
 					<option value=''>--Selecione--</option>
 				<?php
 					$sqlusuario= sprintf("SELECT codigo, nome FROM disciplina ORDER BY nome"); 

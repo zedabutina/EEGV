@@ -17,7 +17,7 @@
 
 				if (empty($matricula)){
 					echo "<br><br><br>";
-					die("<b><font color=" . red . ">ERRO!</font></b>");
+					die("<b><font color='red'>ERRO!</font></b>");
 				}elseif($matricula > 0 && $idp== '9rj9!@#@!329vjy@#$#%#ngv2'){
 					$exc = sprintf("DELETE FROM professor WHERE matricula='%s'",$matricula);
 					$result = pg_query($con,$exc);
