@@ -92,7 +92,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo4">Ementa:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='ementa' id='ementa' cols='80' rows='5' placeholder='" . $dados['ementa'] . "' disabled></textarea>";
+							echo "<textarea name='ementa' id='ementa' cols='83' rows='5' placeholder='" . $dados['ementa'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -105,7 +105,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo5">Objetivo:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='objetivo' id='objetivo' cols='80' rows='5' placeholder='" . $dados['objetivo'] . "' disabled></textarea>";
+							echo "<textarea name='objetivo' id='objetivo' cols='83' rows='5' placeholder='" . $dados['objetivo'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -118,7 +118,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo6">Bibliografia Básica:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_basica' id='bibliografia_basica' cols='80' rows='5' placeholder='" . $dados['bibliografia_basica'] . "' disabled></textarea>";
+							echo "<textarea name='bibliografia_basica' id='bibliografia_basica' cols='83' rows='5' placeholder='" . $dados['bibliografia_basica'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -131,7 +131,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo7">Bibliografia Complementar:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_complementar' id='bibliografia_complementar' cols='80' rows='5' placeholder='" . $dados['bibliografia_complementar'] . "' disabled></textarea>";
+							echo "<textarea name='bibliografia_complementar' id='bibliografia_complementar' cols='83' rows='5' placeholder='" . $dados['bibliografia_complementar'] . "' disabled></textarea>";
 						?>
 					</div>
 			<?php
@@ -233,7 +233,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo9">Competência:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='competencia' id='competencia' cols='80' rows='5' placeholder='" . $dados['competencia'] . "' disabled></textarea>";
+							echo "<textarea name='competencia' id='competencia' cols='83' rows='5' placeholder='" . $dados['competencia'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -246,7 +246,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo10">Conteúdo Programático:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='80' rows='5' placeholder='" . $dados['conteudo_programatico'] . "' disabled></textarea>";
+							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='83' rows='5' placeholder='" . $dados['conteudo_programatico'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -259,7 +259,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo11">Recurso Metodológico:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='80' rows='5' placeholder='" . $dados['recurso_metodologico'] . "' disabled></textarea>";
+							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='83' rows='5' placeholder='" . $dados['recurso_metodologico'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -272,7 +272,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo12">Critério de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='80' rows='5' placeholder='" . $dados['criterio_avaliacao'] . "' disabled></textarea>";
+							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='83' rows='5' placeholder='" . $dados['criterio_avaliacao'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -286,7 +286,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo13">Instrumento de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='80' rows='5' placeholder='" . $dados['instrumento_avaliacao'] . "' disabled></textarea>";
+							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='83' rows='5' placeholder='" . $dados['instrumento_avaliacao'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -299,7 +299,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo14">AEC:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='aec' id='aec' cols='80' rows='5' placeholder='" . $dados['aec'] . "' disabled></textarea>";
+							echo "<textarea name='aec' id='aec' cols='83' rows='5' placeholder='" . $dados['aec'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -312,7 +312,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo15">Bibliografia Sugerida:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='80' rows='5' placeholder='" . $dados['bibliografia_sugerida'] . "' disabled></textarea>";
+							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='83' rows='5' placeholder='" . $dados['bibliografia_sugerida'] . "' disabled></textarea>";
 						?>
 					</div>
 				</div>
