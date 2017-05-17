@@ -53,7 +53,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo1">Código:</label>
 					<div class="col-md-2">
 						<?php
-							echo "<textarea name='codigo' id='codigo' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='5' rows='1' placeholder='" . $dados['codigo'] . "' disabled/></textarea>";
+							echo "<input type='text' name='codigo' id='codigo' class='form-control' placeholder='" . $dados['codigo'] . "' disabled>";
 						?>
 					</div>
 
@@ -66,7 +66,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo2">Disciplina:</label>
 					<div class="col-md-3">
 						<?php
-							echo "<textarea name='nome' id='nome' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='30' rows='1' placeholder='" . $dados['nome'] . "' disabled/></textarea>";
+							echo "<input type='nome' name='nome' id='nome' class='form-control' placeholder='" . $dados['nome'] . "' disabled>";
 						?>
 					</div>
 
@@ -76,10 +76,10 @@ include 'conexao.php';
 				<div class="form-group">-->
 					<div class="col-md-0"></div>
 
-					<label class="col-md-2 control-label" for="campo3">Carga Horária:</label>
+					<label class="col-md-1 control-label" for="campo3">Carga Horária:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='ch' id='ch' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='5' rows='1' placeholder='" . $dados['ch'] . "' disabled/></textarea>";
+							echo "<input type='ch' name='ch' id='ch' class='form-control' placeholder='" . $dados['ch'] . "' disabled>";
 						?>
 					</div>
 
@@ -92,7 +92,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo4">Ementa:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='ementa' id='ementa' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['ementa'] . "' disabled/></textarea>";
+							echo "<textarea name='ementa' id='ementa' cols='80' rows='5' placeholder='" . $dados['ementa'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -105,7 +105,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo5">Objetivo:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='objetivo' id='objetivo' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['objetivo'] . "' disabled/></textarea>";
+							echo "<textarea name='objetivo' id='objetivo' cols='80' rows='5' placeholder='" . $dados['objetivo'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -118,7 +118,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo6">Bibliografia Básica:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_basica' id='bibliografia_basica' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['bibliografia_basica'] . "' disabled/></textarea>";
+							echo "<textarea name='bibliografia_basica' id='bibliografia_basica' cols='80' rows='5' placeholder='" . $dados['bibliografia_basica'] . "' disabled></textarea>";
 						?>
 					</div>
 
@@ -131,14 +131,14 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo7">Bibliografia Complementar:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_complementar' id='bibliografia_complementar' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['bibliografia_complementar'] . "' disabled/></textarea>";
+							echo "<textarea name='bibliografia_complementar' id='bibliografia_complementar' cols='80' rows='5' placeholder='" . $dados['bibliografia_complementar'] . "' disabled></textarea>";
 						?>
 					</div>
 			<?php
 				}
 			?>
 
-			<br>
+			<br><br><br><br><br>
 
 					<div class="col-md-1"></div>
 				</div>
@@ -164,14 +164,62 @@ include 'conexao.php';
 							while($dados = pg_fetch_array($contador)){
 						?>
 					<label class="col-md-1 control-label" for="campo8">Turno:</label>
-					<div class="col-md-1">
+					<div class="col-md-4">
 						<?php
 							if($dados['turno'] == 'M'){
-								echo "<textarea name='codigo' id='codigo' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='5' rows='1' placeholder='Matutino' disabled/></textarea>";
+								echo "<div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' checked disabled/> Matutino
+									  	</label>
+									  </div>
+
+									  <div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' disabled/> Vespertino
+									  	</label>
+									  </div>
+
+									  <div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' disabled/> Noturno
+									  	</label>
+									  </div>";
 							}elseif($dados['turno'] == 'V'){
-								echo "<textarea name='codigo' id='codigo' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='5' rows='1' placeholder='Vespertino' disabled/></textarea>";
+								echo "<div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' disabled/> Matutino
+									  	</label>
+									  </div>
+
+									  <div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' checked disabled/> Vespertino
+									  	</label>
+									  </div>
+
+									  <div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' disabled/> Noturno
+									  	</label>
+									  </div>";
 							}elseif($dados['turno'] == 'N'){
-								echo "<textarea name='codigo' id='codigo' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='5' rows='1' placeholder='Noturno' disabled/></textarea>";
+								echo "<div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' disabled/> Matutino
+									  	</label>
+									  </div>
+
+									  <div class='radio-inline'>
+									  	<label for='turno' class='col-xs-1 control-label'>
+									  		<input type='radio' name='turno' id='turno' disabled/> Vespertino
+									  	</label>
+									  </div>
+
+									  <div class='radio-inline'>
+									  	<label for='turno' class='col-xs-5 control-label'>
+									  		<input type='radio' name='turno' id='turno' checked disabled/> Noturno
+									  	</label>
+									  </div>";
 							}
 						?>
 				 	</div>
@@ -185,7 +233,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo9">Competência:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='competencia' id='competencia' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['competencia'] . "' disabled/></textarea>"
+							echo "<textarea name='competencia' id='competencia' cols='80' rows='5' placeholder='" . $dados['competencia'] . "' disabled></textarea>"
 						?>
 					</div>
 
@@ -198,7 +246,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo10">Conteúdo Programático:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['conteudo_programatico'] . "' disabled/></textarea>"
+							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='80' rows='5' placeholder='" . $dados['conteudo_programatico'] . "' disabled></textarea>"
 						?>
 					</div>
 
@@ -211,7 +259,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo11">Recurso Metodológico:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['recurso_metodologico'] . "' disabled/></textarea>"
+							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='80' rows='5' placeholder='" . $dados['recurso_metodologico'] . "' disabled></textarea>"
 						?>
 					</div>
 
@@ -224,7 +272,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo12">Critério de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['criterio_avaliacao'] . "' disabled/></textarea>"
+							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='80' rows='5' placeholder='" . $dados['criterio_avaliacao'] . "' disabled></textarea>"
 						?>
 					</div>
 
@@ -238,7 +286,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo13">Instrumento de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['instrumento_avaliacao'] . "' disabled/></textarea>"
+							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='80' rows='5' placeholder='" . $dados['instrumento_avaliacao'] . "' disabled></textarea>"
 						?>
 					</div>
 
@@ -251,7 +299,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo14">AEC:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='aec' id='aec' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['aec'] . "' disabled/></textarea>"
+							echo "<textarea name='aec' id='aec' cols='80' rows='5' placeholder='" . $dados['aec'] . "' disabled></textarea>"
 						?>
 					</div>
 
@@ -264,7 +312,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo15">Bibliografia Sugerida:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' readonly='yes' style='background-color:transparent; border:none; resize:none;' cols='80' rows='5' placeholder='" . $dados['bibliografia_sugerida'] . "' disabled/></textarea>";
+							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='80' rows='5' placeholder='" . $dados['bibliografia_sugerida'] . "' disabled></textarea>";
 						?>
 					</div>
 				</div>
