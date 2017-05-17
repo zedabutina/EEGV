@@ -76,7 +76,7 @@ include 'conexao.php';
 				<div class="form-group">-->
 					<div class="col-md-0"></div>
 
-					<label class="col-md-1 control-label" for="campo3">Carga Horária:</label>
+					<label class="col-md-2 control-label" for="campo3">Carga Horária:</label>
 					<div class="col-md-1">
 						<?php
 							echo "<input type='ch' name='ch' id='ch' class='form-control' placeholder='" . $dados['ch'] . "' disabled>";
