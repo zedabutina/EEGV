@@ -37,7 +37,7 @@ include 'conexao.php';
 				<b>Disciplina*: &nbsp;&nbsp;&nbsp;&nbsp;</b><select name="codigo" id="codigo">
 					<option value=''>--Selecione--</option>
 				<?php
-					$sqlusuario= sprintf("SELECT codigo, nome FROM disciplina ORDER BY nome"); 
+					$sqlusuario= sprintf("SELECT d.codigo, d.nome FROM disciplina d INNER JOIN planoensino p ON p.codigo_disc = d.codigo ORDER BY d.nome");
 					$sqlresultado = pg_query($con,$sqlusuario);
 					while($dados = pg_fetch_array($sqlresultado)){
 						echo "<option value='" . $dados['codigo'] ."'>" . $dados['nome'] . "</option>";
