@@ -32,9 +32,9 @@ include 'conexao.php';
 					<div class="col-md-1"></div>
 						<?php
 							$codigoP = $_POST['codigo'];
-							$sqlconsulta = sprintf("SELECT p.codigo FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE d.codigo = '%s'", $codigoP);
-							$consulta = pg_query($con,$sqlconsulta);
-							$result = pg_num_rows($consulta);
+		//					$sqlconsulta = sprintf("SELECT p.codigo FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE d.codigo = '%s'", $codigoP);
+		//					$consulta = pg_query($con,$sqlconsulta);
+			//				$result = pg_num_rows($consulta);
 
 							$sql=sprintf("SELECT * FROM disciplina WHERE codigo = '%s'", $codigoP);
 							$contador = pg_query($con,$sql);
@@ -154,10 +154,10 @@ include 'conexao.php';
 						<?php
 							$codigoP = $_POST['codigo'];
 				//			echo $codigoP;
-							$sql=sprintf("SELECT * FROM planoensino WHERE codigo = '%s'", $result);
-							$contador = pg_query($con,$sql);
-							$result = pg_num_rows($contador);
-							while($dados = pg_fetch_array($contador)){
+				//			$sql=sprintf("SELECT * FROM planoensino WHERE codigo = '%s'", $result);
+				//			$contador = pg_query($con,$sql);
+				//			$result = pg_num_rows($contador);
+				//			while($dados = pg_fetch_array($contador)){
 						?>
 					<label class="col-md-1 control-label" for="campo8">Turno:</label>
 					<div class="col-md-5">
@@ -192,7 +192,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo9">Competência:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='competencia' id='competencia' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='competencia' id='competencia' cols='83' rows='5' placeholder='Digite aqui as competências' ></textarea>";
 						?>
 					</div>
 
@@ -205,7 +205,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo10">Conteúdo Programático:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='83' rows='5' placeholder='Digite aqui o conteúdo programático' ></textarea>";
 						?>
 					</div>
 
@@ -218,7 +218,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo11">Recurso Metodológico:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='83' rows='5' placeholder='Digite aqui os recursos metodológicos' ></textarea>";
 						?>
 					</div>
 
@@ -231,7 +231,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo12">Critério de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='83' rows='5' placeholder='Digite aqui os critérios de avaliação' ></textarea>";
 						?>
 					</div>
 
@@ -245,7 +245,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo13">Instrumento de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='83' rows='5' placeholder='Digite aqui os instrumentos de avaliação' ></textarea>";
 						?>
 					</div>
 
@@ -258,7 +258,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo14">AEC:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='aec' id='aec' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='aec' id='aec' cols='83' rows='5' placeholder='Digite aqui a Atividade Extra Complementar' ></textarea>";
 						?>
 					</div>
 
@@ -271,14 +271,14 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo15">Bibliografia Sugerida:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='83' rows='5' placeholder='ESCREVE AQUI EXEMPLO' ></textarea>";
+							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='83' rows='5' placeholder='Digite aqui a Bibliografia Sugerida' ></textarea>";
 						?>
 					</div>
 				</div>
 			</div>
 
 			<?php
-							}
+			//				}
 			?>
 
 					<div class="col-md-1"></div>
@@ -299,6 +299,13 @@ include 'conexao.php';
 
 					<div class="col-md-1"></div>
 				</div>
+
+			<input type="hidden" name="situacao" id="situacao" value="A" />
+			<input type="hidden" name="obs_devolucao" id="obs_devolucao" value="TESTANDO" />
+			<input type="hidden" name="id" id="id" value="1" />    <!-- vai pegar a sessão do usuario -->
+<?php		echo "<input type='hidden' name='codigo_disc' id='codigo_disc' value='" . $codigoP . "' />"; ?>
+			<input type="hidden" name="matricula_professor" id="matricula_professor" value="1" />
+			<input type="hidden" name="matricula_coordenador" id="matricula_coordenador" value="1" />
 
 			</form>
 		</div>

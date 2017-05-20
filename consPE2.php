@@ -32,6 +32,8 @@ include 'conexao.php';
 					<div class="col-md-1"></div>
 						<?php
 							$codigoP = $_POST['codigo'];
+				//			echo $codigoP;
+				//			$codplano = $_POST['codplano'];
 							$sqlconsulta = sprintf("SELECT p.codigo FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE d.codigo = '%s'", $codigoP);
 							$consulta = pg_query($con,$sqlconsulta);
 							$result = pg_num_rows($consulta);
@@ -158,7 +160,7 @@ include 'conexao.php';
 						<?php
 							$codigoP = $_POST['codigo'];
 				//			echo $codigoP;
-							$sql=sprintf("SELECT * FROM planoensino WHERE codigo = '%s'", $result);
+							$sql=sprintf("SELECT * FROM planoensino WHERE codigo_disc = '%s'", $codigoP);
 							$contador = pg_query($con,$sql);
 							$result = pg_num_rows($contador);
 							while($dados = pg_fetch_array($contador)){
