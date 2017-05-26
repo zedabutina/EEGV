@@ -17,8 +17,8 @@
              6,     // margin header
              3,     // margin footer
              'L');  // L - landscape, P - portrait
-	$codigoPrint = $_POST['codigoPrint'];
-	$sql= sprintf("SELECT * FROM planoensino o INNER JOIN professor r ON r.matricula = o.matricula_professor INNER JOIN disciplina a ON o.codigo_disc = a.codigo INNER JOIN planejamento p ON p.id = o.id WHERE o.codigo = '%s'", $codigoPrint);
+	//$nomequevocequiser = $_POST['codigoDoPLanoDeEnsino'] ou $_GET['codigoDoPLanoDeEnsino'] pra você receber o codigo do plano de ensino
+	$sql= sprintf("SELECT * FROM planoensino o INNER JOIN professor r ON r.matricula = o.matricula_professor INNER JOIN disciplina a ON o.codigo_disc = a.codigo INNER JOIN planejamento p ON p.id = o.id ;");//Colocar aqui um ---WHERE o.codigo = '%s'",$nomequevocequiser);--- no final pra saber qual plano de ensino imprimir 
 	$resul=pg_query($con,$sql);	
 	$result= pg_fetch_array($resul);
 	$disc = $result['codigo_disc'];
