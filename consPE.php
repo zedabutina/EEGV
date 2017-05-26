@@ -34,14 +34,14 @@ include 'conexao.php';
                 <div class="form-group">
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
-				<b>Disciplina*: &nbsp;&nbsp;&nbsp;&nbsp;</b><select name="codigo" id="codigo">
+				<b>Disciplina*: &nbsp;&nbsp;&nbsp;&nbsp;</b><select name="codplano" id="codplano">
 					<option value=''>--Selecione--</option>
 				<?php
 					$sqlusuario= sprintf("SELECT d.codigo, d.nome, p.codigo as codplano FROM disciplina d INNER JOIN planoensino p ON p.codigo_disc = d.codigo ORDER BY d.nome");
 					$sqlresultado = pg_query($con,$sqlusuario);
 					while($dados = pg_fetch_array($sqlresultado)){
-	//escolher qual ECHO fica melhor					echo "<option value='" . $dados['codigo'] ."'>" . $dados['nome'] . "&nbsp;&nbsp;-&nbsp;&nbsp;P. de Ens. Nº" . $dados['codplano'] . "</option>";
-						echo "<option value='" . $dados['codigo'] ."'>" . $dados['nome'] . "</option>";
+						echo "<option value='" . $dados['codplano'] ."'>" . $dados['nome'] . "&nbsp;&nbsp;-&nbsp;&nbsp;P. de Ens. Nº" . $dados['codplano'] . "</option>";
+		//				echo "<option value='" . $dados['codigo'] ."'>" . $dados['nome'] . "</option>";
 					}
 
 				?>

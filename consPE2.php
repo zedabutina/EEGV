@@ -31,18 +31,20 @@ include 'conexao.php';
 				<div class="form-group">
 					<div class="col-md-1"></div>
 						<?php
-							$codigoP = $_POST['codigo'];
+							$codigoP = $_POST['codplano'];
 				//			echo $codigoP;
 				//			$codplano = $_POST['codplano'];
-							$sqlconsulta = sprintf("SELECT p.codigo FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE d.codigo = '%s'", $codigoP);
+							$sqlconsulta = sprintf("SELECT p.codigo, p.codigo_disc FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE p.codigo = '%s'", $codigoP);
 							$consulta = pg_query($con,$sqlconsulta);
 							$result = pg_num_rows($consulta);
+							$dados = pg_fetch_array($consulta);
+							$codigoD = $dados['codigo_disc'];
 							if($result==0){						// validação se foi cadastrado um plano de ensino para a disciplina.
 								echo "<br><br><b><p align='right'>Não há plano de ensino cadastrado para a disciplina selecionada.</p></b><br>";
 								include 'rodape.php';
 								die("<b><font color='red'><p align='right'>ERRO!</p></font></b>");
 							}
-							$sql=sprintf("SELECT * FROM disciplina WHERE codigo = '%s'", $codigoP);
+							$sql=sprintf("SELECT * FROM disciplina WHERE codigo = '%s'", $codigoD);
 							$contador = pg_query($con,$sql);
 							$result = pg_num_rows($contador);
 							if($result==0){						// validação se foi usado o select da página consPE.php
@@ -154,13 +156,17 @@ include 'conexao.php';
 	<div class="container-fluid">
   <!--      <h3 class="page-header">Consultar Plano de Ensino</h3><br>-->
 	<div class="row">
-		<form method="POST" action="#" class="form-horizontal">
+		<form method="POST" action="gerarpdf.php" class="form-horizontal" id="consPEform">
 				<div class="form-group">
 					<div class="col-md-1"></div>
 						<?php
-							$codigoP = $_POST['codigo'];
+							//$codigoP = $_POST['codigo'];
+				       echo "<input type='hidden' name='codigoPrint' id='codigoPrint' value='" . $codigoP . "' />";
+							$sql=sprintf("SELECT p.codigo FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE p.codigo = '%s'", $codigoP);
+
+
 				//			echo $codigoP;
-							$sql=sprintf("SELECT * FROM planoensino WHERE codigo_disc = '%s'", $codigoP);
+							$sql=sprintf("SELECT * FROM planoensino WHERE codigo = '%s'", $codigoP);
 							$contador = pg_query($con,$sql);
 							$result = pg_num_rows($contador);
 							while($dados = pg_fetch_array($contador)){
@@ -271,7 +277,12 @@ include 'conexao.php';
 					</div>
 				</div>
 			</div>
+					<div align="right" class="col-md-12">
+						<?php echo "<input type='image' src='images/printer.png' alt='Submit' width='48' height='48'>"
 
+						?>
+						
+					</div>
 			<?php
 							}
 			?>
