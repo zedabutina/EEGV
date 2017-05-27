@@ -21,8 +21,8 @@ CREATE TABLE planejamento (
 		constraint pkPlanejamento primary key (id) );
 
 CREATE TABLE usuario (
-	id serial NOT NULL,
-	login VARCHAR(20) NOT NULL,
+	id serial,
+	login VARCHAR(20) NOT NULL unique,
 	senha VARCHAR(50) NOT NULL,
 	apelido VARCHAR(60) NOT NULL,
 	sexo CHAR(1) NOT NULL,
@@ -75,21 +75,21 @@ CREATE TABLE planejamento_curso (
 				
 CREATE TABLE planoensino (
 	codigo 	serial NOT NULL,
-	competencia VARCHAR(2000) NOT NULL,
-	conteudo_programatico VARCHAR(4000) NOT NULL,
-	recurso_metodologico VARCHAR(400) NOT NULL,
-	criterio_avaliacao VARCHAR(2000) NOT NULL,
-	instrumento_avaliacao VARCHAR(2000)  NOT NULL,
-	AEC VARCHAR(4000) NOT NULL,
+	competencia VARCHAR(2000),
+	conteudo_programatico VARCHAR(4000),
+	recurso_metodologico VARCHAR(400),
+	criterio_avaliacao VARCHAR(2000),
+	instrumento_avaliacao VARCHAR(2000),
+	AEC VARCHAR(4000),
 	bibliografia_sugerida VARCHAR(1000),
 	situacao CHAR(1) NOT NULL,
-	obs_devolucao  VARCHAR(1000) NOT NULL,
+	obs_devolucao  VARCHAR(1000),
 	data_aprovacao DATE,
-	id INTEGER NOT NULL,
-	codigo_disc INTEGER NOT NULL,
+	id INTEGER,
+	codigo_disc INTEGER,
 	turno CHAR(1), /*(M, V, N) Matutino, Vespertino ou Noturno. Obrigatório se a situação for diferente de “Em andamento”. */
 	matricula_professor integer NOT NULL,
-	matricula_coordenador integer NOT NULL,
+	matricula_coordenador integer,
 			constraint pkPlanoensino primary key (codigo),
 			constraint fkPlanoensino_planejamento foreign key (id)
 				references planejamento(id), 
