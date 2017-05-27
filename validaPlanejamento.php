@@ -32,7 +32,7 @@
 			pg_close($con);
 			
 		}else{
-			echo "<script>alert('Você deve estar logado!');window.location.href='login.php'</script>";
+			echo "<script>alert('Você deve estar logado!');window.location.href='index.php'</script>";
 		}
 	}
 ?>
