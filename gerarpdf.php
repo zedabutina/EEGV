@@ -12,10 +12,10 @@
              '',    // default font family
              15,    // margin_left
              15,    // margin right
-             25,     // margin top    -- aumentei aqui para que não ficasse em cima do header
+             40,     // margin top    -- aumentei aqui para que não ficasse em cima do header
              0,    // margin bottom
              6,     // margin header
-             3,     // margin footer
+             1,     // margin footer
              'L');  // L - landscape, P - portrait
 	//$nomequevocequiser = $_POST['codigoDoPLanoDeEnsino'] ou $_GET['codigoDoPLanoDeEnsino'] pra você receber o codigo do plano de ensino
 	$sql= sprintf("SELECT * FROM planoensino o INNER JOIN professor r ON r.matricula = o.matricula_professor INNER JOIN disciplina a ON o.codigo_disc = a.codigo INNER JOIN planejamento p ON p.id = o.id ;");//Colocar aqui um ---WHERE o.codigo = '%s'",$nomequevocequiser);--- no final pra saber qual plano de ensino imprimir 
@@ -26,9 +26,8 @@
 	$consultar = pg_query($con,$consulta);
 	$consultaResult = pg_fetch_array($consultar);
 	$curso = $consultaResult['nome'];
-	//$mpdf->myvariable = file_get_contents('images/senac.png');
-	//$imagem = '<img src="var:myvariable" />';
-	$cabecalho=($imagem.'<p style="line-height: 1px;"><b>Faculdade de Tecnologia Senac Goias</b></p><p style="line-height: 1px;"><b>Curso Superior de '. $curso .'</b></p><p style="line-height: 1px;"><b>Plano de ensino</b></p></br>');
+
+	$cabecalho=('<p><img src="images/sena.jpg" width="100" height="48"/></p><p style="line-height: 1px;"><b>Faculdade de Tecnologia Senac Goias</b></p><p style="line-height: 1px;"><b>Curso Superior de '. $curso .'</b></p><p style="line-height: 1px;"><b>Plano de ensino</b></p></br>');
 	$rodape = ('<p style="text-decoration: overline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p style="line-height: 1px;"><b>Curso Superior de '. $curso .'</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Página {PAGENO} de {nbpg}</p>');
 	$mpdf->SetHTMLHeader($cabecalho);
 	$mpdf->SetHTMLFooter($rodape);
