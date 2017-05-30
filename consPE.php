@@ -1,6 +1,25 @@
 <?php
+session_start();
 include 'cabecalho.php';
 include 'boots.php';
+
+?>
+
+<br><br>
+
+<?php 
+        if(!isset($_SESSION['login']) || !isset($_SESSION['nivel'])){ 
+            echo "</br><b>Você deve estar logado e ter permissão para isso!!!</b><br><hr>";
+            echo "<div class='container' >";
+            echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
+            echo "</div>"; 
+            
+        }elseif($_SESSION['nivel'] == 'P'){
+?>
+
+<br><br>
+
+<?php
 include 'conexao.php';
 ?>
 <html lang="pt-br">
@@ -61,6 +80,14 @@ include 'conexao.php';
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
+            <?php 
+            }elseif(isset($_SESSION['login']) && ($_SESSION['nivel'] != 'P')){
+                echo "<b>Você não tem permissão</b><br>";
+                echo "<div class='col-md-7'>";
+                echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
+                echo "</div>";
+            } 
+            ?>          
 <?php
 include 'rodape.php';
 ?>
