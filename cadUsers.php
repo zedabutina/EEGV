@@ -20,7 +20,7 @@ include 'boots.php';
 					if (pg_num_rows($valid)>0){
 						echo "<b><font color=red>ERRO!!! Usuario jÃƒÂ¡ cadastrado no sistema.</b>";
 					}else{
-						$sqlvalida = sprintf("INSERT INTO usuario(login, senha, apelido, sexo, nivel) VALUES ('%s','%s','%s','%s','%s') ", $login, $senha, $apelido, $sexo, $nivel);
+						$sqlvalida = sprintf("INSERT INTO usuario(login, senha, apelido, sexo, nivel) VALUES ('%s',md5('%s'),'%s','%s','%s') ", $login, $senha, $apelido, $sexo, $nivel);
 					}
 						$result=pg_query($con,$sqlvalida);
 						echo "Usuário cadastrado com sucesso";

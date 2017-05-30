@@ -24,12 +24,12 @@
 						<tr>
 							<td style="padding: 20px;">
 								<div>
-									<a href="addPlano.php"><img src='images/addPlano.png' width='128' height='128'><br><div style="text-align:center;">Criar Plano de Ensino</span></a>
+									<a href="criarPE.php"><img src='images/addPlano.png' width='128' height='128'><br><div style="text-align:center;">Criar Plano de Ensino</span></a>
 								</div>
 							</td>
 							<td style="padding: 20px;">
 								<div>
-									<a href="consultarMeusPlanosDeEnsino.php"><img src='images/verPlano.jpg' width='128' height='128'><br><div style="text-align:center;">Consultar Meus planos de ensino</div></a>
+									<a href="consPE.php"><img src='images/verPlano.jpg' width='128' height='128'><br><div style="text-align:center;">Consultar Meus planos de ensino</div></a>
 								</div>
 							</td>
 							<td style="padding: 20px;">

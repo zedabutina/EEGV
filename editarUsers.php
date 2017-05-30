@@ -1,11 +1,27 @@
 <?php
-	include "cabecalho.php";
-?>
-	</head>
-	<?php include "boots.php"; ?>
+session_start();
+include 'cabecalho.php';
+include 'boots.php';
 
-	<br/><br/>
-	<?php include "conexao.php"; ?>
+?>
+
+<br><br>
+
+<?php 
+		if(!isset($_SESSION['login']) || !isset($_SESSION['nivel'])){ 
+			echo "</br><b>Você deve estar logado e ter permissão para isso!!!</b><br><hr>";
+			echo "<div class='container' >";
+			echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
+			echo "</div>"; 
+			
+		}elseif($_SESSION['nivel'] == 'C'){
+?>
+
+<br><br>
+
+<?php
+include 'conexao.php';
+?>
 	<body>
 		<div id="list" class="row">
 	     			<div id="main" class="container-fluid">
@@ -76,6 +92,16 @@
 				</div>
 				</div>
 	     		</div>
+
+
+	     			<?php 
+			}elseif(isset($_SESSION['login']) && ($_SESSION['nivel'] != 'C')){
+				echo "<b>Você não tem permissão</b><br>";
+				echo "<div class='col-md-7'>";
+				echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
+				echo "</div>";
+			} 
+			?>
 <?php	 
 	include "rodape.php";
 ?>
