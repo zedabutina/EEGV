@@ -49,7 +49,7 @@
 								$visualizar=sprintf("SELECT nome FROM professor WHERE matricula = '%s'",$dados['matricula']);
 								$sqlvisualizar=pg_fetch_array(pg_query($con,$visualizar));
 								echo "<td>" . $sqlvisualizar['nome'] . "</td>";
-								echo "<form method='POST' action='editar.php'><input type='hidden' name='edit' value='". $dados['numero'] . "'>";						
+								echo "<form method='POST' action='editarCurso.php'><input type='hidden' name='edit' value='". $dados['numero'] . "'>";						
 								echo "<td class='actions'><button class='btn btn-link btn-xs' type='submit'><img src='images/editar.png' width='24' height='24'></button>";
 								echo "</form>";
 								echo "<form method='POST' action='excluirCurso.php'><input type='hidden' name='num' value='". $dados['numero'] . "'><input type='hidden' name='id' value='9rj9!@#@!329vjy@#$#%#ngv2'>";								

@@ -5,7 +5,7 @@
 		if(isset($_SESSION['login']) && isset($_SESSION['nivel'])){
 		
 			$login = $_SESSION['login'];
-			$ano = $_POST['ano'];
+			$ano = (int)$_POST['ano'];
 			$semestre = $_POST['semestre'];
 			$dtinicio = $_POST['dtinicio'];
 			$dtfinal = $_POST['dtfinal'];
@@ -15,7 +15,7 @@
 			
 			include "conexao.php";
 			
-			$sqlinsert=sprintf("INSERT INTO planejamento(ano,semestre,data_inicio,data_termino,situacao) VALUES (%s,%s,'%s','%s','%s')",$ano,$semestre,$dtinicio,$dtfinal,$situacao);
+			$sqlinsert=sprintf("INSERT INTO planejamento(ano,semestre,data_inicio,data_termino,situacao,autor) VALUES (%s,%s,'%s','%s','%s','%s')",$ano,$semestre,$dtinicio,$dtfinal,$situacao,$login);
 
 			$insere=pg_query($con,$sqlinsert);
 
@@ -25,14 +25,14 @@
 			$id= $result['max'];
 			for($i=0;$i<$contador;$i++){
 				
-				$sqlinsere=sprintf("INSERT INTO planejamento_curso VALUES(%s,%s)",$cursos[$i],$id);
+				$sqlinsere=sprintf("INSERT INTO planejamento_curso VALUES(%s,%s,'%s')",$cursos[$i],$id,$login);
 				$sqlcurso= pg_query($con,$sqlinsere);
 			}
 			echo "<script>alert('Planejamento iniciado com sucesso!!!'); window.location.href='iniciarPlanejamento.php'</script>";
 			pg_close($con);
 			
 		}else{
-			echo "<script>alert('Você deve estar logado!');window.location.href='index.php'</script>";
+			echo "<script>alert('Você deve estar logado!');window.location.href='login.php'</script>";
 		}
 	}
 ?>

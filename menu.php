@@ -8,7 +8,7 @@
 		<?php
 			if($_SESSION['login'] == '' && $_SESSION['nivel'] == ''){
 				echo "<b>Você deve estar logado</b>";
-				header('Location: login.php');
+				header('Location: index.php');
 			}elseif($_SESSION['login'] != '' && $_SESSION['nivel'] != ''){ 
 		?>
 				
@@ -29,7 +29,7 @@
 							</td>
 							<td style="padding: 20px;">
 								<div>
-									<a href="consPE.php"><img src='images/verPlano.jpg' width='128' height='128'><br><div style="text-align:center;">Consultar Meus planos de ensino</div></a>
+									<a href="meusplanosdeensino.php"><img src='images/verPlano.jpg' width='128' height='128'><br><div style="text-align:center;">Consultar Meus planos de ensino</div></a>
 								</div>
 							</td>
 							<td style="padding: 20px;">
@@ -94,20 +94,29 @@
 								      </div>
 									<div class="tab-pane active" id="tab5">
 									  <table><tr><td style="padding: 20px;">
-									<a href="formUsers.php"><img src='images/iniciarPlanejamento.png' width='128' height='128'><div style="text-align:center;">Iniciar Planejamento</div></a></td>
-									<td style="padding: 20px;"><a href="alterarUsers.php"><img src='images/fecharPlanejamento.png' width='128' height='128'><div style="text-align:center;">Fechar Planejamento</div></a></td></tr>			
+									<a href="iniciarPlanejamento.php"><img src='images/iniciarPlanejamento.png' width='128' height='128'><div style="text-align:center;">Iniciar Planejamento</div></a></td>
+									<td style="padding: 20px;"><a href="fecharplanejamento.php"><img src='images/fecharPlanejamento.png' width='128' height='128'><div style="text-align:center;">Fechar Planejamento</div></a></td></tr>			
 									</table>
 								      </div>
 									<div class="tab-pane active" id="tab6">
 									  <table><tr><td style="padding: 20px;">
-									<a href="formUsers.php"><img src='images/pendente.png' width='128' height='128'><div style="text-align:center;">Pendentes de Aprovação</div></a></td>
-									<td style="padding: 20px;"><a href="alterarUsers.php"><img src='images/parecer.jpeg' width='128' height='128'><div style="text-align:center;">Emitir Parecer</div></a></td></tr>			
+								<div>
+									<a href="criarPE.php"><img src='images/addPlano.png' width='128' height='128'><br><div style="text-align:center;">Criar Plano de Ensino</span></a>
+								</div>
+							</td>
+							<td style="padding: 20px;">
+								<div>
+									<a href="meusplanosdeensino.php"><img src='images/verPlano.jpg' width='128' height='128'><br><div style="text-align:center;">Consultar Meus planos de ensino</div></a>
+								</div>
+							</td><td style="padding: 20px;">
+									<a href="pendentes.php"><img src='images/pendente.png' width='128' height='128'><div style="text-align:center;">Pendentes de Aprovação</div></a></td>
+									</tr>			
 									</table>
 								      </div>
 									<?php } ?>
 									<div class="tab-pane active" id="tab7">
 									  <table><tr><td style="padding: 20px;">
-									<a href="formProf.php"><img src='images/definirGrade.png' width='128' height='128'><div style="text-align:center;">Definir Grade</div></a></td>
+									<a href="gradecurricular.php"><img src='images/definirGrade.png' width='128' height='128'><div style="text-align:center;">Definir Grade</div></a></td>
 									</tr>			
 									</table>
 								      </div>

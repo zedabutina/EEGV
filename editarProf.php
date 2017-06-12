@@ -98,7 +98,7 @@ include 'conexao.php';
 									echo "<option value='" . $dadosc['id'] . "'>" . $dadosc['apelido'] . "</option>";
 								}
 							}
-
+							pg_close($con);
 							echo "</select>";
 							echo "</td>";
 							echo "<th></th>";
@@ -130,3 +130,4 @@ include 'conexao.php';
 <?php
 include 'rodape.php';
 ?>
+

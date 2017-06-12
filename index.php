@@ -35,9 +35,8 @@
 
 					
 					<div id="main" class="row">
-						<div class="col-md-7">
+						<div class="col-md-6">
 							<button type="submit" class="btn btn-primary pull-right h2">Login</button>
-							<a class='btn btn-secundary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></a>
 						</div>
 					</div>
 

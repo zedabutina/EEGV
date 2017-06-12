@@ -114,7 +114,7 @@
 						
 					</div>
 					<div align="left" class="col-md-1">
-						<?php echo "<a href='alterarDisc.php' class='btn btn-primary' onClick='window.history.go(-1)'>Voltar</a>"; ?></div>
+						<?php echo "<a href='menu.php' class='btn btn-primary' >MENU</a>"; ?></div>
 				</div>
 				</div>
 	     		</div>
@@ -127,4 +127,5 @@
 				echo "</div>";
 			} 
 		?>
+
 

@@ -1,11 +1,7 @@
 <?php
 	include "cabecalho.php";
 ?>
-	<script>
-		function 
-	</script>
-	<style>
-	</style>
+
 	</head>
 
 	<body>
@@ -27,7 +23,7 @@
 				$sql=sprintf("SELECT * FROM usuario WHERE login='%s' and apelido='%s' and nivel='%s'",$login,$apelido,$nivel);
 				$result=pg_query($con,$sql);
 				if(pg_num_rows($result)==0){
-					echo "<script>alert('Você deve estar logado!'); window.location.href='login.php'</script>";
+					echo "<script>alert('Você deve estar logado!'); window.location.href='index.php'</script>";
 				}if(pg_num_rows($result)>0){
 					?>
 						<form method="POST" action="validaPlanejamento.php" id="form" name="form" class="form-horizontal" onSubmit="javascript: return valida();">		<input type='hidden' name='dataAtual' id='dataAtual' value="<?php echo $dataatual;?>">
@@ -57,13 +53,7 @@
 							<div class="form-group">
 								<label for="nova" class="col-xs-5 control-label">Data de ínicio:</label>
 								<div class="col-xs-3">
-					      				<input type="date" name="dtinicio" id="dtinicio" class="form-control"  placeHolder="DD/MM/YYYY"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="nova" class="col-xs-5 control-label">Data de Termino:</label>
-								<div class="col-xs-3">
-					      				<input type="date" name="dtfinal" id="dtfinal" class="form-control"  placeHolder="DD/MM/YYYY"/>
+					      				<input type="date" name="dtinicio" id="dtinicio" class="form-control"  placeHolder="DD/MM/YYY"/>
 								</div>
 							</div>
 							
@@ -122,11 +112,11 @@
 									document.getElementById('dtinicio').focus();
 									return false;
 								}
-								if (dtfinal==''){
+								/*if (dtfinal==''){
 									alert("Digite a data final");
 									document.getElementById('dtfinal').focus();
 									return false;
-								}
+								}*/
 								if (curso==''){
 									alert("Selecione um curso");
 									document.getElementById('curso').focus();
@@ -142,7 +132,7 @@
 			
 <?php
 	}else{
-		echo "<script>alert('Você deve estar logado!'); window.location.href='login.php'</script>";		
+		echo "<script>alert('Você deve estar logado!'); window.location.href='index.php'</script>";		
 	}
 	include "rodape.php";
 ?>

@@ -14,11 +14,11 @@ include 'boots.php';
             echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
             echo "</div>"; 
             
-        }if($_SESSION['nivel'] == 'P' || $_SESSION['nivel'] == 'C'){
+        }elseif(isset($_SESSION['login']) && ($_SESSION['nivel'] == 'P' || $_SESSION['nivel'] == 'C')){
 ?>
 
 <br><br>
-
+</head>
 <?php
 include 'conexao.php';
 ?>
@@ -27,32 +27,39 @@ include 'conexao.php';
 	<body>
 
 				<?php
-					$turno = $_POST['turno'];   // fazer validacao: if $turno e $bibl. tiver vazio, então da o insert dele na linha 30...  se não.... ir fazendo todas possibilidades...
-					$competencia = $_POST['competencia'];
-					$conteudo_programatico = $_POST['conteudo_programatico'];
-					$recurso_metodologico = $_POST['recurso_metodologico'];
-					$criterio_avaliacao = $_POST['criterio_avaliacao'];
-					$instrumento_avaliacao = $_POST['instrumento_avaliacao'];
-					$aec = $_POST['aec'];
-					$bibliografia_sugerida = $_POST['bibliografia_sugerida'];
-					$situacao = $_POST['situacao'];
-					$obs_devolucao = $_POST['obs_devolucao'];
-					$id = $_POST['id'];
-					$codigo_disc = $_POST['codigo_disc'];
-					$matricula_professor = $_POST['matricula_professor'];
-					$matricula_coordenador = $_POST['matricula_coordenador'];
+					
+					 $turno = htmlspecialchars($_POST['turno']);  
+					 $competencia = htmlspecialchars($_POST['competencia']);
+					 $conteudo_programatico = htmlspecialchars($_POST['conteudo_programatico']);
+					 $recurso_metodologico = htmlspecialchars($_POST['recurso_metodologico']);
+					 $criterio_avaliacao = htmlspecialchars($_POST['criterio_avaliacao']);
+					 $instrumento_avaliacao = htmlspecialchars($_POST['instrumento_avaliacao']);
+					 $aec = htmlspecialchars($_POST['aec']);
+					 $bibliografia_sugerida = htmlspecialchars($_POST['bibliografia_sugerida']);
+					 $situacao = htmlspecialchars($_POST['situacao']);
+					// $obs_devolucao = htmlspecialchars($_POST['obs_devolucao']);
+					 $id = (int)$_POST['id'];
+					 $codigo_disc = (int)$_POST['codigo_disc'];
+					 $matricula_professor = (int)$_POST['matricula_professor'];
+					//echo $matricula_coordenador = (int)$_POST['matricula_coordenador'];
+					
+					
 
-//esquece campo date
-						if(($bibliografia_sugerida!='') && ($turno!='')){   //ou seja se TUDO ESTIVER PREENCHIDO
-							$sqlvalida = sprintf("INSERT INTO planoensino(turno, competencia, conteudo_programatico, recurso_metodologico, criterio_avaliacao, instrumento_avaliacao, aec, bibliografia_sugerida, situacao, obs_devolucao, id, codigo_disc, matricula_professor, matricula_coordenador) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s') ", $turno, $competencia, $conteudo_programatico, $recurso_metodologico, $criterio_avaliacao, $instrumento_avaliacao, $aec, $bibliografia_sugerida, $situacao, $obs_devolucao, $id, $codigo_disc, $matricula_professor, $matricula_coordenador);
-			/*			}elseif(($bibliografia_sugerida=='') && ($turno=='')){ //tudo menos bib. sugerida AND turno
-							$sqlvalida = sprintf("INSERT INTO planoensino(competencia, conteudo_programatico, recurso_metodologico, criterio_avaliacao, instrumento_avaliacao, aec, situacao, obs_devolucao, id, codigo_disc, matricula_professor, matricula_coordenador) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s') ", $competencia, $conteudo_programatico, $recurso_metodologico, $criterio_avaliacao, $instrumento_avaliacao, $aec, $situacao, $obs_devolucao, $id, $codigo_disc, $matricula_professor, $matricula_coordenador);
-						}        */
+						if(($turno!='') && ($competencia!='') && ($conteudo_programatico!='') && ($recurso_metodologico!='') && ($criterio_avaliacao!='') && ($instrumento_avaliacao!='') && ($aec!='') && ($bibliografia_sugerida!='') && ($id!='') && ($codigo_disc!='') && ($matricula_professor!='')  && ($situacao=='C')){  
+							 
+							 $sqlvalida = sprintf("INSERT INTO planoensino(turno, competencia, conteudo_programatico, recurso_metodologico, criterio_avaliacao, instrumento_avaliacao, aec, bibliografia_sugerida, situacao,id, codigo_disc, matricula_professor,autor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s',%s,%s,%s,'%s')", $turno, $competencia, $conteudo_programatico, $recurso_metodologico, $criterio_avaliacao, $instrumento_avaliacao, $aec, $bibliografia_sugerida, $situacao, $id, $codigo_disc, $matricula_professor,$_SESSION['login']);
+						
+						}elseif($situacao='E'){
+							$sqlvalida = sprintf("INSERT INTO planoensino(turno, competencia, conteudo_programatico, recurso_metodologico, criterio_avaliacao, instrumento_avaliacao, aec, bibliografia_sugerida, situacao,id, codigo_disc, matricula_professor,autor) VALUES('%s','%s','%s','%s','%s','%s','%s','%s','%s',%s,%s,%s,'%s') ", $turno, $competencia, $conteudo_programatico, $recurso_metodologico, $criterio_avaliacao, $instrumento_avaliacao, $aec, $bibliografia_sugerida, $situacao, $id, $codigo_disc, $matricula_professor,$_SESSION['login']);											
+						}
+						
 						$result=pg_query($con,$sqlvalida);
-						echo "Professor cadastrado com sucesso";
+						echo "Plano de ensino cadastrado com sucesso";
 						echo "<br>Você será redirecionado para a página de consulta de plano de ensino.";
-						header('Refresh: 5; url=consPE.php');
-					}
+						header('Refresh: 5; url=meusplanosdeensino.php');
+						
+
+						
 
 				?>
     <?php 
@@ -66,3 +73,4 @@ include 'conexao.php';
 <?php									
 	include "rodape.php";
 ?>
+

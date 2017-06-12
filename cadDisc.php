@@ -27,13 +27,13 @@
 if($_SERVER['REQUEST_METHOD'] == "POST"){ // Esta função permite que seja recebido apenas requisições método POST
 	if(!isset($_POST['codigodisc']) && $_POST['nome'] && $_POST['ch'] && $_POST['ementa'] &&  $_POST['objetivo'] && $_POST['bb'] && $_POST['bc'])// Esta função valida todos os dados
 	{
-		$codigo = $_POST['codigo'];
-		$nome = $_POST['nome'];
-		$ch = $_POST['ch'];
-		$ementa = $_POST['ementa'];
-		$objetivo = $_POST['objetivo'];
-		$bibliografia_basica = $_POST['bb'];
-		$bibliografia_complementar = $_POST['bc'];
+		$codigo = (int)$_POST['codigo'];
+		$nome = htmlspecialchars($_POST['nome']);
+		$ch = (int)$_POST['ch']);
+		$ementa = htmlspecialchars($_POST['ementa'];
+		$objetivo = htmlspecialchars($_POST['objetivo']);
+		$bibliografia_basica = htmlspecialchars($_POST['bb']);
+		$bibliografia_complementar = htmlspecialchars($_POST['bc']);
 				
 					$sql=sprintf("SELECT * FROM disciplina WHERE codigo = %s", $codigo);
 					$valid=pg_query($con,$sql);
@@ -43,11 +43,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){ // Esta função permite que seja rece
 						echo "<a href='formDisc.php' style='text-decoration: none;' onclick='window.history.go(-1); return false;'>voltar</a>";
 					}else{
 						if($codigo==''){
-							$sqlvalida = sprintf("INSERT INTO disciplina(codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar) VALUES ('%s','%s','%s','%s','%s','%s','%s') ", $codigo, $nome, $ch, $ementa, $objetivo, $bibliografia_basica, $bibliografia_complementar);
+							$sqlvalida = sprintf("INSERT INTO disciplina(codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar,autor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s') ", $codigo, $nome, $ch, $ementa, $objetivo, $bibliografia_basica, $bibliografia_complementar,$_SESSION['login']);
 						}else{
-							$sqlvalida = sprintf("INSERT INTO disciplina(codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar) VALUES ('%s','%s','%s','%s','%s','%s','%s') ", $codigo, $nome, $ch, $ementa, $objetivo, $bibliografia_basica, $bibliografia_complementar);
+							$sqlvalida = sprintf("INSERT INTO disciplina(codigo, nome, ch, ementa, objetivo, bibliografia_basica, bibliografia_complementar,autor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s') ", $codigo, $nome, $ch, $ementa, $objetivo, $bibliografia_basica, $bibliografia_complementar,$_SESSION['login']);
 						}
 						$result=pg_query($con,$sqlvalida);{
+						pg_close($con);
 						echo " <div class='alert alert-success'> Disciplina cadastrada com sucesso!";
 						echo "<br>Você será redirecionado para a página de listagem de disciplinas";
 						header('Refresh: 5; url=alterarDisc.php');
@@ -69,3 +70,4 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){ // Esta função permite que seja rece
 <?php 
 	 	include "rodape.php";
 ?>
+

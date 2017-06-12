@@ -92,7 +92,7 @@ include 'conexao.php';
 			
 				</table>
 					<div align="right" class="col-md-11">
-						<?php echo "<tr><a href='formProf.php'><img src='images/adicionar.png' width='48' height='48'></a></tr>"; ?>
+						<?php echo "<tr><a href='formProf.php'><img src='images/adcionar.png' width='48' height='48'></a></tr>"; ?>
 						
 					</div>
 					<div align="left" class="col-md-1">
@@ -114,3 +114,4 @@ include 'conexao.php';
 <?php	 
 	include "rodape.php";
 ?>
+

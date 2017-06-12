@@ -39,13 +39,19 @@ include 'conexao.php';
 				if (empty($num)){
 					die("<b>ERRO</b>");
 				}elseif($num != '' && $idp== '9rj9!@#@!329vjy@#$#%#ngv2'){
+					$log=sprintf("UPDATE usuario set autor = '%s' WHERE login='%s'",$_SESSION['login'],$num);
+					$conlog=pg_query($con,$log);
 					$exc = sprintf("DELETE FROM usuario WHERE login='%s'",$num);
 					$result = pg_query($con,$exc);
 					pg_close($con);
 					header('Location: alterarUsers.php');
 				}elseif($ant > 0 && $ide='fff3#@$%#@EGT$%TG' && $idp==' '){
 					$login = $_POST['login'];
+					$log1=sprintf("UPDATE usuario set autor = '%s' WHERE login='%s'",$_SESSION['login'],$login);
+					$conlog1=pg_query($con,$log1);
 					$excl = sprintf("DELETE FROM usuario WHERE login='%s'",$login);
+					$log2=sprintf("UPDATE usuario set autor = '%s' WHERE login='%s'",$_SESSION['login'],$ant);
+					$conlog2=pg_query($con,$log2);
 					$exc = sprintf("DELETE FROM usuario WHERE login='%s'",$ant);
 					$result = pg_query($con,$exc);
 					$resol = pg_query($con,$excl);
@@ -63,9 +69,11 @@ include 'conexao.php';
 					$apelido = $_POST['apelido'];
 					$sexo = $_POST['sexo'];
 					$nivel = $_POST['nivel'];
+					$log3=sprintf("UPDATE usuario set autor = '%s' WHERE login='%s'",$_SESSION['login'],$ant);
+					$conlog3=pg_query($con,$log3);
 					$sub=sprintf("DELETE FROM usuario WHERE login='%s'",$ant);
 					$subinsert=pg_query($con,$sub);
-					$substituir=sprintf("UPDATE usuario SET login='%s' WHERE login='%s'",$ant,$login);
+					$substituir=sprintf("UPDATE usuario SET login='%s',autor='%s' WHERE login='%s'",$ant,$_SESSION['login'],$login);
 					$substituirResult=pg_query($con,$substituir);
 				}
 					$resulInset = pg_query($con,$insert);
@@ -87,3 +95,4 @@ include 'conexao.php';
 			} 
 			?>	    
 <?php include "rodape.php"; ?>
+

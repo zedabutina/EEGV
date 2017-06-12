@@ -19,21 +19,17 @@
 			
 			<?php
 				
-				$login = $_POST['login'];
-				$password= $_POST['password'];
+				$login = htmlspecialchars($_POST['login']);
+				$password= htmlspecialchars($_POST['password']);
 				$sqlvalida = sprintf("SELECT * FROM usuario WHERE login = '%s' and senha = '%s'",$login,md5($password));
 				$resultado = pg_query($con,$sqlvalida);  
 				$linhas = pg_num_rows($resultado);
-
-
 				if(isset($_SESSION['login'])){
-					echo "<p><b>Você já esta logado como ". $_SESSION["login"] . ". Para realizar um login com usuário diferente faça </p></b>";					pg_close($con);
-					echo "<b><a href='logout.php'>logout</a></b>";					
-				}
-
-
-				if($linhas <= 0){
-					echo "<script>alert('Usuário e/ou senha incorreta');window.location.href='login.php'</script>";
+						echo "<p><b>Você já esta logado como ". $_SESSION["login"] . ". Para realizar um login com usuário diferente faça </p></b>";					pg_close($con);
+						echo "<b><a href='logout.php'>logout</a></b>";					
+			
+				}if($linhas <= 0){
+					echo "<script>alert('Usuário e/ou senha incorreta');window.location.href='index.php'</script>";
 					pg_close($con);
 				}elseif($linhas > 0){
 					
@@ -50,7 +46,12 @@
 					$_SESSION['login']= $login;
 					$_SESSION['apelido']= $apel[0];
 					$_SESSION['nivel']= $nv[0];
-
+					$dat = date("Y-m-d");
+					$hora = date("H:i:s");
+					$ip=$_SERVER['REMOTE_ADDR'];
+					$loglogin=sprintf("INSERT INTO log_login(login,ip,data,hora) VALUES('%s','%s','%s','%s')",$login,$ip,$dat,$hora);
+					$logloginr=pg_query($con,$loglogin);
+					
 					pg_close($con);
 					header("Location:menu.php");
 					

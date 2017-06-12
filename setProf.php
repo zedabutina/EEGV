@@ -14,23 +14,23 @@
 		<div id="main" class="container-fluid">
 			<h3 class="page-header">Editar Professor</h3>
 			<?php
-				$matricula = $_POST['matricula'];
-				$ant = $_POST['ant'];
-				$nome = $_POST['nome'];
-				$cep = $_POST['cep'];
-				$logradouro = $_POST['logradouro'];
-				$numero = $_POST['numero'];
-				$complemento = $_POST['complemento'];
-				$bairro = $_POST['bairro'];
+				$matricula = (int)$_POST['matricula'];
+				$ant = (int)$_POST['ant'];
+				$nome = htmlspecialchars($_POST['nome']);
+				$cep = htmlspecialchars($_POST['cep']);
+				$logradouro = htmlspecialchars($_POST['logradouro']);
+				$numero = htmlspecialchars($_POST['numero']);
+				$complemento = htmlspecialchars($_POST['complemento']);
+				$bairro = htmlspecialchars($_POST['bairro']);
 				$cidade = $_POST['cidade'];
 				$uf = $_POST['uf'];
-				$id = $_POST['id'];
+				$id = (int)$_POST['id'];
 				if($matricula==$ant){
 					if($complemento==' '){
-						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$ant);
+						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' , autor = '%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$_SESSION['login'],$ant);
 
 					}elseif($complemento!=' '){
-						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$ant);
+						$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s', autor = '%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$_SESSION['login'],$ant);
 					}
 
 						$update = pg_query($con,$sqlup); 
@@ -86,9 +86,9 @@
 							echo "</div>";
 						}elseif($result==0){
 							if ($complemento == ' '){
-								$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$ant);
+								$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', bairro='%s', cidade='%s', uf='%s', id='%s' , autor='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$bairro,$cidade,$uf,$id,$_SESSION['login'],$ant);
 							}elseif($complemento != ' '){
-								$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$ant);
+								$sqlup = sprintf("UPDATE professor SET matricula='%s', nome='%s', cep='%s', logradouro='%s', numero='%s', complemento='%s',bairro='%s', cidade='%s', uf='%s', id='%s' , autor='%s' WHERE matricula='%s'",$matricula,$nome,$cep,$logradouro,$numero,$complemento,$bairro,$cidade,$uf,$id,$_SESSION['login'],$ant);
 							}
 						
 						$update = pg_query($con,$sqlup); 
@@ -109,3 +109,4 @@
 			?>
 		</div>
 <?php include "rodape.php"; ?>
+

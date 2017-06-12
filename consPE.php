@@ -51,28 +51,26 @@ include 'conexao.php';
 
 
                 <div class="form-group">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-4">
+                   
+                    <div class="col-md-10">
 				<b>Disciplina*: &nbsp;&nbsp;&nbsp;&nbsp;</b><select name="codplano" id="codplano">
 					<option value=''>--Selecione--</option>
 				<?php
-					$sqlusuario= sprintf("SELECT d.codigo, d.nome, p.codigo as codplano FROM disciplina d INNER JOIN planoensino p ON p.codigo_disc = d.codigo ORDER BY d.nome");
-					$sqlresultado = pg_query($con,$sqlusuario);
+					$sqlusuario= sprintf("SELECT d.codigo as disc,d.nome as nomeDisc, p.codigo as prof FROM disciplina d INNER JOIN planoensino p ON p.codigo_disc = d.codigo INNER JOIN professor r ON p.matricula_professor= r.matricula INNER JOIN usuario u ON u.id = r.id WHERE u.login = '%s'",$_SESSION['login']);
+					$sqlresultado = pg_query($con,$sqlusuario);	
 					while($dados = pg_fetch_array($sqlresultado)){
-						echo "<option value='" . $dados['codplano'] ."'>" . $dados['nome'] . "&nbsp;&nbsp;-&nbsp;&nbsp;P. de Ens. Nº" . $dados['codplano'] . "</option>";
-		//				echo "<option value='" . $dados['codigo'] ."'>" . $dados['nome'] . "</option>";
+						echo "<option value='" . $dados['disc'] ."'>" . $dados['nomedisc'] . "&nbsp;&nbsp;-&nbsp;&nbsp;P. de Ens. Nº" . $dados['prof'] . "</option>";	
 					}
 
 				?>
 				</select>
                     </div>
-
-                    <div class="col-md-1"></div>
+                    
                 </div>
 				<div class="col-md-9"></div>
 
 					<div class="col-md-1">
-                        <button type="submit" class="btn btn-primary">Carregar...</button>
+                        <button type="submit" class="btn btn-primary">Visualizar</button>
                     </div>
 
 				<br>
@@ -91,3 +89,4 @@ include 'conexao.php';
 <?php
 include 'rodape.php';
 ?>
+

@@ -19,23 +19,28 @@ include 'conexao.php';
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
 </head>
-
+<?php 
+		if(!isset($_SESSION['login']) || !isset($_SESSION['nivel'])){ 
+			echo "</br><b>Você deve estar logado e ter permissão para isso!!!</b><br><hr>";
+			echo "<div class='container' >";
+			echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
+			echo "</div>"; 
+			
+		}if($_SESSION['nivel'] == 'P' || $_SESSION['nivel'] == 'C'){
+?>
 <body>
 
 	<br>
 
 	<div class="container-fluid">
-		<h3 class="page-header">Criar Plano de Ensino</h3><br>
+		<h3 class="page-header">Editar Plano de Ensino</h3><br>
 		<div class="row">
 			<form method="POST" action="#" class="form-horizontal">
 				<div class="form-group">
 					<div class="col-md-1"></div>
 						<?php
-							$codigoP = (int)$_POST['codigo'];
-		//					$sqlconsulta = sprintf("SELECT p.codigo FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE d.codigo = '%s'", $codigoP);
-		//					$consulta = pg_query($con,$sqlconsulta);
-			//				$result = pg_num_rows($consulta);
-
+							$codigoP = (int)$_POST['codigods'];
+							
 							$sql=sprintf("SELECT * FROM disciplina WHERE codigo = '%s'", $codigoP);
 							$contador = pg_query($con,$sql);
 							$result = pg_num_rows($contador);
@@ -144,11 +149,18 @@ include 'conexao.php';
 	</div>
 
 	<hr>
-<!--	-----------------------------------------------------------------------------------------------------------------		-->
+<!--	------------------------------------------------------------------------------------------------------------------->
 	<div class="container-fluid">
   <!--      <h3 class="page-header">Consultar Plano de Ensino</h3><br>-->
 	<div class="row">
 		<form method="POST" action="cadPE.php" class="form-horizontal" onSubmit="javascript: return valida();" name='form'>
+				<?php
+					$plano = $_POST['coddisc'];
+					$sqlplano = sprintf("SELECT * FROM planoensino WHERE codigo = '%s'",$plano);
+					$sqlin = pg_query($con,$sqlplano);
+					$planores= pg_fetch_array($sqlin);
+					$planores['turno'];
+				?>
 				<div class="form-group">
 					<div class="col-md-1"></div>
 						
@@ -156,24 +168,23 @@ include 'conexao.php';
 					<div class="col-md-5">
 					
 						<?php
-							echo "
-							<div class='radio-inline'>
-								<label for='turno' class='col-xs-1 control-label'>
-									<input type='radio' name='turno' id='turno' value='M' /> Matutino
-								</label>
-							</div>
-
-							<div class='radio-inline'>
-								<label for='turno' class='col-xs-1 control-label'>
-									<input type='radio' name='turno' id='turno' value='V' /> Vespertino
-								</label>
-							</div>
-
-							<div class='radio-inline'>
-								<label for='turno' class='col-xs-1 control-label'>
-									<input type='radio' name='turno' id='turno' value='N' /> Noturno
-								</label>
-							</div>";
+							if($planores['turno'] == 'M'){
+								echo "<input type='radio' name='turno' id='turno' value='M' checked/> Matutino";
+								echo "<input type='radio' name='turno' id='turno' value='V'/> Vespertino";
+								echo "<input type='radio' name='turno' id='turno'  value='N'/> Noturno";
+							}elseif($planores['turno'] =='V'){
+								echo "<input type='radio' name='turno' id='turno' value='M' /> Matutino";
+								echo "<input type='radio' name='turno' id='turno' value='V' checked/> Vespertino";
+								echo "<input type='radio' name='turno' id='turno'  value='N'/> Notuno";
+							}elseif($planores['turno'] =='N'){
+								echo "<input type='radio' name='turno' id='turno' value='M'/> Matutino";
+								echo "<input type='radio' name='turno' id='turno' value='V'/> Vespertino";
+								echo "<input type='radio' name='turno' id='turno'  value='N' checked/> Noturno";
+							}else{
+								echo "<input type='radio' name='turno' id='turno' value='M'/> Matutino";
+								echo "<input type='radio' name='turno' id='turno' value='V'/> Vespertino";
+								echo "<input type='radio' name='turno' id='turno'  value='N' /> Noturno";	
+							}
 						?>
 				 	</div>
 
@@ -183,10 +194,10 @@ include 'conexao.php';
 				<div class="form-group">
 					<div class="col-md-1"></div>
 
-					<label class="col-md-1 control-label" for="campo9">Competência:</label>
+					<label class="col-md-1 control-label" for="competencia">Competência:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='competencia' id='competencia' cols='83' rows='5' placeholder='Digite aqui as competências' ></textarea>";
+							echo "<textarea name='competencia' id='competencia' cols='83' rows='5'>".$planores['competencia']."</textarea>";
 						?>
 					</div>
 
@@ -199,7 +210,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo10">Conteúdo Programático:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='83' rows='5' placeholder='Digite aqui o conteúdo programático'></textarea>";
+							echo "<textarea name='conteudo_programatico' id='conteudo_programatico' cols='83' rows='5' placeholder='Digite aqui o conteúdo programático'>".$planores['conteudo_programatico']."</textarea>";
 						?>
 					</div>
 
@@ -209,10 +220,10 @@ include 'conexao.php';
 				<div class="form-group">
 					<div class="col-md-1"></div>
 
-					<label class="col-md-1 control-label" for="campo11">Recurso Metodológico:</label>
+					<label class="col-md-1 control-label" for="recurso_metodologico">Recurso Metodológico:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='83' rows='5' placeholder='Digite aqui os recursos metodológicos' ></textarea>";
+							echo "<textarea name='recurso_metodologico' id='recurso_metodologico' cols='83' rows='5' placeholder='Digite aqui os recursos metodológicos' >".$planores['recurso_metodologico']."</textarea>";
 						?>
 					</div>
 
@@ -225,7 +236,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo12">Critério de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='83' rows='5' placeholder='Digite aqui os critérios de avaliação' ></textarea>";
+							echo "<textarea name='criterio_avaliacao' id='criterio_avaliacao' cols='83' rows='5' placeholder='Digite aqui os critérios de avaliação' >".$planores['criterio_avaliacao']."</textarea>";
 						?>
 					</div>
 
@@ -239,7 +250,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo13">Instrumento de Avaliação:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='83' rows='5' placeholder='Digite aqui os instrumentos de avaliação' ></textarea>";
+							echo "<textarea name='instrumento_avaliacao' id='instrumento_avaliacao' cols='83' rows='5' placeholder='Digite aqui os instrumentos de avaliação' >".$planores['instrumento_avaliacao']."</textarea>";
 						?>
 					</div>
 
@@ -252,7 +263,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo14">AEC:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='aec' id='aec' cols='83' rows='5' placeholder='Digite aqui a Atividade Extra Complementar' ></textarea>";
+							echo "<textarea name='aec' id='aec' cols='83' rows='5' placeholder='Digite aqui a Atividade Extra Complementar' >".$planores['aec']."</textarea>";
 						?>
 					</div>
 
@@ -265,7 +276,7 @@ include 'conexao.php';
 					<label class="col-md-1 control-label" for="campo15">Bibliografia Sugerida:</label>
 					<div class="col-md-1">
 						<?php
-							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='83' rows='5' placeholder='Digite aqui a Bibliografia Sugerida' ></textarea>";
+							echo "<textarea name='bibliografia_sugerida' id='bibliografia_sugerida' cols='83' rows='5' placeholder='Digite aqui a Bibliografia Sugerida' >".$planores['bibliografia_sugerida']."</textarea>";
 						?>
 					</div>
 				</div>
@@ -369,6 +380,14 @@ include 'conexao.php';
 				return true;
 			}
 	</script>
+<?php 
+			}elseif(isset($_SESSION['login']) && ($_SESSION['nivel'] == 'A')){
+				echo "<b>Você não tem permissão</b><br>";
+				echo "<div class='col-md-7'>";
+				echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
+				echo "</div>";
+			} 
+			?>
 <?php
 include 'rodape.php';
 ?>

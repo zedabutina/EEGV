@@ -22,14 +22,14 @@
 			<div id="main" class="container-fluid">
 				<h3 class="page-header">Cadastro de Curso</h3>
 				<?php
-							$numero = $_POST['numero'];
-							$nome= $_POST['nome'];
+							$numero = (int)$_POST['numero'];
+							$nome= htmlspecialchars($_POST['nome']);
 							$sigla= $_POST['sigla'];
 							$tipo= $_POST['tipo'];
-							$coordenador= $_POST['coordenador'];
+							$coordenador= (int)$_POST['coordenador'];
 							$sql=sprintf("SELECT * FROM curso WHERE numero = %s",$numero);
 							$valid=pg_query($con,$sql);
-echo $coodenador;
+
 								if (pg_num_rows($valid)>0){
 									echo "<div align='left' class='col-md-7'>";
 									echo "<b>ERRO!Número de curso já cadastrado</b>";
@@ -37,10 +37,7 @@ echo $coodenador;
 									echo "'<script>alert('Número de Curso já cadastrado!'); window.history.go(-1);</script>';";
 									echo "</div>";
 								}elseif(pg_num_rows($valid)==0){
-									if($coordenador==''|| $coordenador=="Selecione..."){
-										$sqlvalida = sprintf("INSERT INTO curso(numero,nome,sigla,tipo) VALUES ('%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo);
-									}else{
-										$sqlvalida = sprintf("INSERT INTO curso VALUES ('%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador);	
+										$sqlvalida = sprintf("INSERT INTO curso VALUES (%s,'%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador,$_SESSION['login']);	
 									}
 									$result=pg_query($con,$sqlvalida);
 									echo "<b>Curso cadastrado com sucesso</b>";
@@ -62,7 +59,7 @@ echo $coodenador;
 				echo "<button class='btn btn-primary pull-right h2' onClick='window.history.go(-1)'><b>Voltar</b></button>";
 				echo "</div>";
 			}
-			}	 
+			 
 			?>
 	     		
 <?php	 

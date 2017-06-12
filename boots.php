@@ -8,6 +8,7 @@
 					<ul class="nav navbar-nav navbar-right">	
 						
 				<?php
+					session_start();
 					if(isset($_SESSION['login'])){
 						echo "<li><a href='menu.php'>Menu</a></li>";
 						echo "<li><a href='logout.php'>Logout</a></li>";

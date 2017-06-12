@@ -28,32 +28,35 @@ include 'conexao.php';
 			<div id="main" class="container-fluid">
 				<h3 class="page-header">Cadastro de Professor</h3>
 				<?php
-					$matricula = $_POST['matricula'];
-					$nome= $_POST['nome'];
-					$cep= $_POST['cep'];
-					$logradouro= $_POST['logradouro'];
-					$numero= $_POST['numero'];
-					$complemento= $_POST['complemento'];
-					$bairro= $_POST['bairro'];
+					$matricula = (int)$_POST['matricula'];
+					$nome= htmlspecialchars($_POST['nome']);
+					$cep= htmlspecialchars($_POST['cep']);
+					$logradouro= htmlspecialchars($_POST['logradouro']);
+					$numero= htmlspecialchars($_POST['numero']);
+					$complemento= htmlspecialchars($_POST['complemento']);
+					$bairro= htmlspecialchars($_POST['bairro']);
 					$cidade= $_POST['cidade'];
 					$uf= $_POST['uf'];
-					$id= $_POST['id'];
+					$id= (int)$_POST['id'];
+					$autor = $_SESSION['login'];
 
 					$sql=sprintf("SELECT * FROM professor WHERE matricula = %s", $matricula);
 					$valid=pg_query($con,$sql);
 					if (pg_num_rows($valid)>0){
 						echo "<b><font color=red>ERRO!!! Professor já cadastrado no sistema.</b>";
 						header('Refresh: 3; url=alterarProf.php');
-					}else{
+						pg_close($con);
+					}elseif(pg_num_rows($valid)==0){
 						if($complemento==''){
-							$sqlvalida = sprintf("INSERT INTO professor(matricula, nome, cep, logradouro, numero, bairro, cidade, uf, id) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s') ", $matricula, $nome, $cep, $logradouro, $numero, $bairro, $cidade, $uf, $id);
+							$sqlvalida = sprintf("INSERT INTO professor(matricula, nome, cep, logradouro, numero, bairro, cidade, uf, id,autor) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s') ", $matricula, $nome, $cep, $logradouro, $numero, $bairro, $cidade, $uf, $id,$autor);
 						}else{
-							$sqlvalida = sprintf("INSERT INTO professor(matricula, nome, cep, logradouro, numero, complemento, bairro, cidade, uf, id) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s') ", $matricula, $nome, $cep, $logradouro, $numero, $complemento, $bairro, $cidade, $uf, $id);
+							$sqlvalida = sprintf("INSERT INTO professor VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s') ", $matricula, $nome, $cep, $logradouro, $numero, $complemento, $bairro, $cidade, $uf, $id,$autor);
 						}
 						$result=pg_query($con,$sqlvalida);
 						echo "Professor cadastrado com sucesso";
 						echo "<br>Você será redirecionado para a página de listagem de professores";
 						header('Refresh: 5; url=alterarProf.php');
+						pg_close($con);
 					}
 	
 				?>
@@ -70,3 +73,4 @@ include 'conexao.php';
 <?php	 
 	include "rodape.php";
 ?>
+

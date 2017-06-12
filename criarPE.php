@@ -49,7 +49,7 @@ include 'conexao.php';
     <div class="container-fluid">
         <h3 class="page-header">Criar Plano de Ensino</h3><br>
         <div class="row">
-            <form method="POST" action="formPE.php" class="form-horizontal">
+            <form method="POST" action="formPE.php" class="form-horizontal" onSubmit="javascript: return valida();">
 
 
                 <div class="form-group">
@@ -63,7 +63,7 @@ include 'conexao.php';
 					while($dados = pg_fetch_array($sqlresultado)){
 						echo "<option value='" . $dados['codigo'] ."'>" . $dados['nome'] . "</option>";
 					}
-
+					pg_close($con);
 				?>
 				</select>
                     </div>
@@ -73,7 +73,7 @@ include 'conexao.php';
 				<div class="col-md-9"></div>
 
 					<div class="col-md-1">
-                        <button type="submit" class="btn btn-primary">Carregar...</button>
+                        <button type="submit" class="btn btn-primary">Criar</button>
                     </div>
 
 				<br>
@@ -81,6 +81,15 @@ include 'conexao.php';
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </body>
+	<script>
+		function valida(){
+			if(document.getElementById('codigo').selectedIndex == false || document.getElementById('codigo').value == "--Selecione--"){
+							alert("Defina uma disciplina");
+							document.getElementById('codigo').focus();
+							return false;
+			}
+		}
+	</script>
     <?php 
             }elseif(isset($_SESSION['login']) && ($_SESSION['nivel'] != 'P' || $_SESSION['nivel'] != 'C')){
                 echo "<b>Você não tem permissão</b><br>";
@@ -92,3 +101,4 @@ include 'conexao.php';
 <?php
 include 'rodape.php';
 ?>
+

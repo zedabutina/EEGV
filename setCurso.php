@@ -26,23 +26,19 @@
 		<div id="main" class="container-fluid">
 			<h3 class="page-header">Editar Curso</h3>
 			<?php
-				$numero = $_POST['numero'];
+				$numero = (int)$_POST['numero'];
 				$ant = $_POST['ant'];
-				$nome = $_POST['nome'];
+				$nome = htmlspecialchars($_POST['nome']);
 				$sigla = $_POST['sigla'];
 				$tipo = $_POST['tipo'];
 				$coordenador = $_POST['coordenador'];
 				if($numero==$ant){
-					if($coordenador==' ' || $coordenador==0){
-						$sqlup = sprintf("UPDATE curso SET numero='%s', nome='%s' ,sigla='%s', tipo='%s' WHERE numero='%s'",$numero,$nome,$sigla,$tipo,$numero);
-					}elseif($coordenador>0){
-						$sqlup = sprintf("UPDATE curso SET numero='%s', nome='%s' ,sigla='%s', tipo='%s',matricula='%s' WHERE numero='%s'",$numero,$nome,$sigla,$tipo,$coordenador,$numero);
-					}
+						$sqlup = sprintf("UPDATE curso SET numero='%s', nome='%s' ,sigla='%s', tipo='%s',matricula='%s' , autor = '%s' WHERE numero='%s'",$numero,$nome,$sigla,$tipo,$coordenador,$_SESSION['login'],$numero);
 						$update = pg_query($con,$sqlup); 
 						echo "<b>Dados alterados com sucesso!!!</b>";
 						echo "<div align='center'>";
 						echo "<a href='alterarCurso.php' class='btn btn-primary'>Listar Cursos</a>";
-						echo "<button onClick='#' class='btn btn-secondary'>Menu</button>";
+						echo "<button onClick='menu.php' class='btn btn-secondary'>Menu</button>";
 						echo "</div>";
 						pg_close($con);
 				
@@ -66,11 +62,8 @@
 						
 					
 					}else{
-						if($coordenador==' ' || $coordenador==0){
-						$sqlconsulta = sprintf("INSERT INTO curso(numero,nome,sigla,tipo) VALUES ('%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo);
-						}elseif($coordenador>0){
-						$sqlconsulta = sprintf("INSERT INTO curso VALUES ('%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador);
-					}
+						$sqlconsulta = sprintf("INSERT INTO curso VALUES ('%s','%s','%s','%s','%s','%s') ", $numero,$nome,$sigla,$tipo,$coordenador,$_SESSION['login']);
+					
 						
 						$consulta = pg_query($con,$sqlconsulta);
 						$exc = sprintf("DELETE FROM curso WHERE numero='%s'",$ant);

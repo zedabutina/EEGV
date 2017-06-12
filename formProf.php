@@ -22,35 +22,75 @@ include 'boots.php';
 <?php
 include 'conexao.php';
 ?>
-
-    <script type="text/javascript">
-	    function validarDados(){
-
-    	/*	matricula = document.frmIncluirProf.matricula.value;
-			nome = document.frmIncluirProf.nome.value;
-			cep = document.frmIncluirProf.cep.value;
-			logradouro = document.frmIncluirProf.logradouro.value;
-			numero = document.frmIncluirProf.numero.value;
-			bairro = document.frmIncluirProf.bairro.value;
-			cidade = document.frmIncluirProf.cidade.value;
-			uf = document.frmIncluirProf.uf.value;
-			id = document.frmIncluirProf.id.value;
-
-			//validação dos campos obrigatórios
-			if (matricula == "" || nome == "" || cep == "" || logradouro == "" || numero == "" || bairro == "" || cidade == "" || uf == "" || id == ""){
-            	window.alert("Verifique se os campos estão todos preenchidos.");
-
-			}else{*/
-				document.frmIncluirProf.submit();
+		<script>
+				function valida(){
+				var matricula = $("#matricula").val();
+				var nome = $("#nome").val();
+				var cep = $("#cep").val();
+				var logradouro = $("#logradouro").val();
+				var numero = $("#numero").val();
+				var bairro = $("#bairro").val();
+				var cidade = $("#cidade").val();
+				var uf = $("#uf").val();
+				
+				if(matricula == ''){
+					alert("Digite a matricula");
+					document.getElementById('matricula').focus();
+					return false;
+				}
+				if(nome == ''){
+					alert("Digite o nome");
+					document.getElementById('nome').focus();
+					return false;
+				}
+				if(cep == ''){
+					alert("Digite o cep");
+					document.getElementById('cep').focus();
+					return false;
+				}
+				if(logradouro == ''){
+					alert("Digite o logradouro");
+					document.getElementById('logradouro').focus();
+					return false;
+				}
+				if(numero == ''){
+					alert("Digite o número");
+					document.getElementById('numero').focus();
+					return false;
+				}
+				if(bairro == ''){
+					alert("Digite o bairro");
+					document.getElementById('bairro').focus();
+					return false;
+				}
+				if(cidade == ''){
+					alert("Digite o cep");
+					document.getElementById('cep').focus();
+					return false;
+				}
+				if(uf == ''){
+					alert("Digite o cep");
+					document.getElementById('cep').focus();
+					return false;
+				}
+				if(document.getElementById('id').selectedIndex == false || document.getElementById('id').value == "Selecione..."){
+					alert("Você deve selecionar um usuário");
+					document.getElementById('id').focus();
+					return false;
+				}
+				
+				return true;
 			}
-//		}
-	</script>
+
+
+		</script>
+    
 	<link href="css/alinhar.css" rel="stylesheet">
 	</head>
     	<center><h1><b>Cadastro de professor</b></h1></center>
     	<br>
 
-    	<form name="frmIncluirProf" action="cadProf.php" method="post">
+    	<form name="frmIncluirProf" action="cadProf.php" method="post" onSubmit="javascript: return valida();">
 
 		<label for="matricula"><b>Matrícula*:</b> </label>
 		<input type="number" name="matricula" id="matricula" size="31" maxlength="15"/>
@@ -117,13 +157,14 @@ include 'conexao.php';
 				while($dados = pg_fetch_array($sqlresultado)){
 					echo "<option value='" . $dados['id'] ."'>" . $dados['apelido'] . "</option>";
 				}
+				pg_close($con);
 			?>
 	</select>
 
 		<br>
 
-	<center><button type="button" class="btn btn-info"
-				onclick="javascript:validarDados()"> Gravar!
+	<center><button type="submit" class="btn btn-info"
+				> Gravar!
 	</center></button>
 	<a href="menu.php"> &lt; Voltar</a>
 

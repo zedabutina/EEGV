@@ -9,6 +9,8 @@
 <?php
 	include "boots.php";
 	include "conexao.php";
+
+	if(isset($_SESSION['login']) && isset($_SESSION['nivel'])){
 ?>		
 		<div id="main" class="container-fluid">
 			<h3 class="page-header">Alterar senha</h3>
@@ -86,6 +88,9 @@
 			</div>
 			
 <?php
+	}else{
+		echo "<script>alert('Você deve estar logado!'); window.location.href='login.php'</script>";		
+	}
 	include "rodape.php";
 ?>
 

@@ -23,7 +23,9 @@
 	if($_SERVER['REQUEST_METHOD'] == "POST"){
 		
 		if(isset($_POST['cod_disc'])){
-			$cod_disc = $_POST['cod_disc'];
+			$cod_disc = (int)$_POST['cod_disc'];
+			$log=sprintf("UPDATE disciplina set autor = '%s' WHERE codigo='%s'",$_SESSION['login'],$cod_disc);
+			$conlog=pg_query($con,$log);
 			$query_del = sprintf("DELETE FROM disciplina WHERE codigo='%s'",$cod_disc);
 			$result = pg_query($con,$query_del);
 

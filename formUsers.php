@@ -23,25 +23,53 @@ include 'boots.php';
 include 'conexao.php';
 ?>
 
-    <script type="text/javascript">
-	    function validarDados(){
-    	/*	login = document.frmIncluirUsers.login.value;
-			senha = document.frmIncluirUsers.senha.value;
-			senha_confirma = document.frmIncluirUsers.senha_confirma.value;
-			apelido = document.frmIncluirUsers.apelido.value;
-			sexo = document.frmIncluirUsers.sexo.value;
-			nivel = document.frmIncluirUsers.nivel.value;
-			//validaÃƒÂ§ÃƒÂ£o dos campos obrigatÃƒÂ³rios
-			 if ($senha == $senha_confirma) {
-            $mensagem = "<span class='sucesso'><b>Sucesso</b>: As senhas sÃƒÂ£o iguais: ".$senha."</span>";
-			} else {
-            $mensagem = "<span class='erro'><b>Erro</b>: As senhas nÃƒÂ£o conferem, digite novamente!</span>";
-			}
-			*/
-				document.frmIncluirUsers.submit();
-			}
-//		}
-	</script>
+    <script>
+							function valida(){
+								var login = $("#login").val();
+								var senha = $("#senha").val();
+								var senha_confirma = $("#senha_confirma").val();
+								var apelido = $("#apelido").val();
+								
+							
+								if(login==''){
+									alert("Digite um Login");
+									document.getElementById('login').focus();
+									return false;
+								}
+								if(senha==''){
+									alert("Digite uma Senha");
+									document.getElementById('senha').focus();
+									return false;
+								}
+								if(senha_confirma==''){
+									alert("Digite a mesma Novamente");
+									document.getElementById('senha_confirma').focus();
+									return false;
+								}
+								if(apelido==''){
+									alert("Digite um apelido");
+									document.getElementById('apelido').focus();
+									return false;
+								}
+								
+								if (senha!=senha_confirma){
+									alert("Senhas não conferem.Digite novamente!");
+									document.getElementById('senha_confirma').focus();
+									return false;
+								}
+								if((frmIncluirUsers.sexo[0].checked == false)&&(frmIncluirUsers.sexo[1].checked == false)){
+									alert("Escolha um sexo");
+									document.getElementById('sexo').focus();
+									return false;
+								}
+								if((frmIncluirUsers.nivel[0].checked == false)&&(frmIncluirUsers.nivel[1].checked == false)&&(frmIncluirUsers.nivel[2].checked == false)){
+									alert("Escolha um nível");
+									document.getElementById('nivel').focus();
+									return false;
+								}
+								return true;
+							}
+						</script>
 
 	<link href="css/alinhar2.css" rel="stylesheet">
 
@@ -49,7 +77,7 @@ include 'conexao.php';
     	<center><h1><b>Cadastro de Usuário</b></h1></center>
     	<br>
 
-    	<form name="frmIncluirUsers" action="cadUsers.php" method="post">
+    	<form name="frmIncluirUsers" action="cadUsers.php" method="post" onSubmit="javascript: return valida();">
 
 		<label for="login"><b>Login*:</b> </label>
 		<input type="text" name="login" id="login" size="5" maxlength="15"/>
@@ -98,9 +126,7 @@ include 'conexao.php';
 
     	<h5> <strong>Todos os campos com * serão de preenchimento obrigatório.</strong></h5>
 
-	<center><button type="button" class="btn btn-info"
-				onclick="javascript:validarDados()"> Gravar!
-	</center></button>
+	<center><button type="submit" class="btn btn-info"> Gravar!</center></button>
 	<a href="menu.php"> &lt; Voltar</a>
 
 		</form>

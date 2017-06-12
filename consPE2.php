@@ -51,8 +51,6 @@ include 'conexao.php';
 					<div class="col-md-1"></div>
 						<?php
 							$codigoP = $_POST['codplano'];
-				//			echo $codigoP;
-				//			$codplano = $_POST['codplano'];
 							$sqlconsulta = sprintf("SELECT p.codigo, p.codigo_disc FROM planoensino p INNER JOIN disciplina d ON d.codigo = p.codigo_disc WHERE p.codigo = '%s'", $codigoP);
 							$consulta = pg_query($con,$sqlconsulta);
 							$result = pg_num_rows($consulta);
@@ -297,7 +295,7 @@ include 'conexao.php';
 				</div>
 			</div>
 					<div align="right" class="col-md-12">
-						<?php echo "<input type='image' src='images/printer.png' alt='Submit' width='48' height='48'>"
+						<?php echo "<button type='submit'><img src='images/printer.png'  width='48' height='48'/></button>"
 
 						?>
 						
@@ -319,7 +317,7 @@ include 'conexao.php';
 						&nbsp;&nbsp;
 						<a href="#" class="btn btn-primary">Salvar</a>
 						&nbsp;&nbsp;
-						<a href="#" class="btn btn-default">Cancelar</a>
+						<a href="menu.php" class="btn btn-default">Cancelar</a>
 
 					<div class="col-md-1"></div>
 				</div>
@@ -343,3 +341,4 @@ include 'conexao.php';
 <?php
 include 'rodape.php';
 ?>
+
